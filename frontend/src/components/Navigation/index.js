@@ -14,8 +14,8 @@ export default function Navigation ({ isLoaded }) {
     } else {
         sessionLinks = (
             <>
-                <NavLink to='/login'>Log In</NavLink>
-                <NavLink to='/signup'>Sign Up</NavLink>
+                <NavLink to='/login' className='nav-btn'>Log In</NavLink>
+                <NavLink to='/signup' className='nav-btn'>Sign Up</NavLink>
             </>
         );
     }
