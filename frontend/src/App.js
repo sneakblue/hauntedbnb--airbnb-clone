@@ -14,7 +14,6 @@ function App() {
   }, [dispatch])
   return isLoaded && (
     <>
-        <h1>Hello from App</h1>
         <Navigation isLoaded ={isLoaded} />
         <Switch>
             <Route path='/login'>

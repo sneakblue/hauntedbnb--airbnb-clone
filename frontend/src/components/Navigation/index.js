@@ -20,11 +20,11 @@ export default function Navigation ({ isLoaded }) {
         );
     }
     return (
-        <ul>
-            <li>
-                <NavLink exact to='/'>Home</NavLink>
+        <div className='navbar'>
+            <nav>
+                <NavLink exact to='/' className='nav-btn'>Home</NavLink>
                 {isLoaded && sessionLinks}
-            </li>
-        </ul>
+            </nav>
+        </div>
     );
 }
