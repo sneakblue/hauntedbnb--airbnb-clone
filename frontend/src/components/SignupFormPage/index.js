@@ -29,13 +29,14 @@ export default function SignupFormPage () {
 
     }
     return (
-        <>
-            <h2>Signup Form Page</h2>
+        <div className='signup-main-div'>
             <form
+                className='signup-form'
                 onSubmit={handleSubmit}
             >
+                <h2>Signup Form Page</h2>
                 <ul>
-                    {errors.map((error, i) => <li key={i}>{error}</li>)}
+                    {errors.map((error, i) => <li key={i} className='error'>{error}</li>)}
                 </ul>
                 <label htmlFor='username'>Username</label>
                 <input
@@ -67,6 +68,6 @@ export default function SignupFormPage () {
                 />
                 <button type='submit'>Submit</button>
             </form>
-        </>
+        </div>
     )
 }

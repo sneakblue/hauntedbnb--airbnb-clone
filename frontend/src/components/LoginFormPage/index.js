@@ -28,30 +28,32 @@ export default function LoginFormPage () {
     }
     return (
         <div className='login-main-div'>
-            <h2>Login Page</h2>
             <div className='login-div'>
+                <h2>Login Page</h2>
                 <form
                     className='login-form'
                     onSubmit={handleSubmit}
                 >
                     <ul>
-                        {errors.map((error, i) => <li key={i}>{error}</li>)}
+                        {errors.map((error, i) => <li key={i} className='login-error'>{error}</li>)}
                     </ul>
-                    <label htmlFor='username'>Username</label>
+                    <label htmlFor='username'>Username: </label>
                     <input
                         name='username'
                         type='text'
+                        className='login-input'
                         value={credential}
                         onChange={(e) => setCredential(e.target.value)}
                     />
-                    <label htmlFor='password'>Password</label>
+                    <label htmlFor='password'>Password: </label>
                     <input
                         name='password'
                         type='password'
+                        className='login-input'
                         value={password}
                         onChange={((e) => setPassword(e.target.value))}
                     />
-                    <button type='submit'>Log In</button>
+                    <button type='submit' className='login-btn'>Log In</button>
                 </form>
             </div>
         </div>

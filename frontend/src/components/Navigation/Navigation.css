@@ -29,8 +29,8 @@
     width: 100%;
     height: 50px;
     display: flex;
-    background-color: aquamarine;
+    background-color: rgb(28, 160, 50);
     justify-content: flex-end;
     align-items: center;
-    position: fixed;
+    position: relative;
 }
