@@ -4,6 +4,8 @@ import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
 import HomePage from './components/HomePage';
+import HauntPage from './components/HauntPage';
+import CreateHaunt from './components/CreateHaunt';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 
@@ -25,6 +27,15 @@ function App() {
             </Route>
             <Route exact path='/'>
                 <HomePage />
+            </Route>
+            <Route exact path='/haunts/create'>
+                <CreateHaunt />
+            </Route>
+            <Route exact path='/haunts/:id'>
+                <HauntPage />
+            </Route>
+            <Route>
+                Page Not Found
             </Route>
         </Switch>
     </>

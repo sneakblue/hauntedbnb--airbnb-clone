@@ -9,7 +9,10 @@ export default function Navigation ({ isLoaded }) {
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-            <ProfileButton user={sessionUser} />
+            <>
+                <NavLink to='/haunts/create' className='nav-btn'>Create a Haunt</NavLink>
+                <ProfileButton user={sessionUser} />
+            </>
         );
     } else {
         sessionLinks = (

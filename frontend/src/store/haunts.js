@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_HAUNTS = 'haunts/LOAD_HAUNTS';
 // const LOAD_IMAGES = 'haunts/LOAD_IMAGES';
 const CREATE_HAUNT = 'haunts/CREATE_HAUNT';
+const UPDATE = 'haunts/UPDATE';
 
 const initialState = {};
 
@@ -28,21 +29,34 @@ export default function hauntsReducer (state = initialState, action) {
         //     return newState;
         // }
         case CREATE_HAUNT: {
-            const newState = { ...state };
+            const newState = {...state};
             const newHaunt = action.haunt;
-            newState[newHaunt.id] = {
-                userId: newHaunt.userId,
-                address: newHaunt.address,
-                city: newHaunt.city,
-                state: newHaunt.state,
-                country: newHaunt.country,
-                lat: newHaunt.lat,
-                lng: newHaunt.lng,
-                name: newHaunt.name,
-                price: newHaunt.price,
-                activity: newHaunt.activity
+
+            newState[newHaunt.haunt.id] = {
+                id: newHaunt.haunt.id,
+                userId: newHaunt.haunt.userId,
+                address: newHaunt.haunt.address,
+                city: newHaunt.haunt.city,
+                state: newHaunt.haunt.state,
+                country: newHaunt.haunt.country,
+                lat: newHaunt.haunt.lat,
+                lng: newHaunt.haunt.lng,
+                name: newHaunt.haunt.name,
+                price: newHaunt.haunt.price,
+                activity: newHaunt.haunt.activity
             };
             return newState;
+        }
+        case UPDATE: {
+            return {
+                ...state,
+                [action.haunt.updatedHaunt.id]: {
+                    ...action.haunt.updatedHaunt
+                }
+            }
+        }
+        case DELETE: {
+            
         }
         default: {
             return state;
@@ -66,6 +80,11 @@ const createHaunt = haunt => ({
     haunt
 })
 
+const update = haunt => ({
+    type: UPDATE,
+    haunt
+})
+
 export const getHaunts = () => async dispatch => {
     const response = await csrfFetch('/api/haunts');
     const imgResponse = await csrfFetch('/api/images');
@@ -86,6 +105,30 @@ export const getHaunts = () => async dispatch => {
 //     }
 // }
 
-// export const newHaunt = (haunt) => async dispatch => {
-//     const response = await csrfFetch('/api/haunts/create')
-// }
+export const newHaunt = (haunt) => async dispatch => {
+    const { userId, address, city, state, country, lat, lng, name, price, activity } = haunt;
+    const response = await csrfFetch('/api/haunts/create', {
+        method: 'POST',
+        body: JSON.stringify({ userId, address, city, state, country, lat, lng, name, price, activity })
+    });
+
+    if(response.ok) {
+        const createdHaunt = await response.json();
+        dispatch(createHaunt(createdHaunt));
+        return createHaunt;
+    };
+};
+
+export const updateHaunt = (haunt) => async dispatch => {
+    const { userId, address, city, state, country, lat, lng, name, price, activity, id } = haunt;
+    const response = await csrfFetch(`/api/haunts/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ userId, address, city, state, country, lat, lng, name, price, activity })
+    });
+
+    if (response.ok) {
+        const updatedHaunt = await response.json();
+        dispatch(update(updatedHaunt));
+        return updatedHaunt;
+    }
+}

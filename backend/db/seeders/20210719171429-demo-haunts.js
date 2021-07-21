@@ -18,7 +18,7 @@ module.exports = {
         {
             userId: 1,
             address: '1120 Westchester Pl',
-            city: 'Lost Angeles',
+            city: 'Los Angeles',
             state: 'California',
             country: 'USA',
             lat: 34.05000,
