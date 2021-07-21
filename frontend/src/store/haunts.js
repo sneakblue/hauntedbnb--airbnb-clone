@@ -4,6 +4,7 @@ const LOAD_HAUNTS = 'haunts/LOAD_HAUNTS';
 // const LOAD_IMAGES = 'haunts/LOAD_IMAGES';
 const CREATE_HAUNT = 'haunts/CREATE_HAUNT';
 const UPDATE = 'haunts/UPDATE';
+const DELETE = 'haunts/DELETE';
 
 const initialState = {};
 
@@ -56,7 +57,9 @@ export default function hauntsReducer (state = initialState, action) {
             }
         }
         case DELETE: {
-            
+            const newState = {...state};
+            delete newState[action.id]
+            return newState;
         }
         default: {
             return state;
@@ -83,6 +86,11 @@ const createHaunt = haunt => ({
 const update = haunt => ({
     type: UPDATE,
     haunt
+})
+
+const deleteHaunt = id => ({
+    type: DELETE,
+    id
 })
 
 export const getHaunts = () => async dispatch => {
@@ -130,5 +138,15 @@ export const updateHaunt = (haunt) => async dispatch => {
         const updatedHaunt = await response.json();
         dispatch(update(updatedHaunt));
         return updatedHaunt;
+    }
+}
+
+export const removeHaunt = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/haunts/${id}`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        dispatch(deleteHaunt(id));
     }
 }

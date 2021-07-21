@@ -1,11 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getHaunts } from "../../store/haunts";
+import { getHaunts, removeHaunt } from "../../store/haunts";
 import EditHaunt from "../EditHaunt";
 
 export default function HauntPage () {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { id } = useParams();
     const [isUser, setIsUser] = useState(false);
     const [showForm, setShowForm] = useState(false);
@@ -25,6 +26,11 @@ export default function HauntPage () {
         if (!isUser) {
             setIsUser(true);
         }
+    }
+
+    const deleteHaunt = () => {
+        dispatch(removeHaunt(id));
+        history.push('/');
     }
 
     let content = null;
@@ -47,7 +53,10 @@ export default function HauntPage () {
             <p>{haunt.address}, {haunt.city}, {haunt.state}, {haunt.country}</p>
             <p>${haunt.price} / Night</p>
             {isUser && (
-                <button onClick={() => showForm === true ? setShowForm(false) : setShowForm(true)}>Edit</button>
+                <>
+                    <button onClick={() => showForm === true ? setShowForm(false) : setShowForm(true)}>Edit</button>
+                    <button onClick={deleteHaunt}>Delete Haunt</button>
+                </>
             )}
             {content}
         </div>
