@@ -2,7 +2,9 @@ import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getHaunts, removeHaunt } from "../../store/haunts";
+import { getReviews } from "../../store/reviews";
 import EditHaunt from "../EditHaunt";
+import Reviews from "../Reviews";
 
 export default function HauntPage () {
     const dispatch = useDispatch();
@@ -15,14 +17,14 @@ export default function HauntPage () {
 
     useEffect(() => {
         dispatch(getHaunts());
-    }, [dispatch]);
+        dispatch(getReviews(id));
+    }, [dispatch, id]);
 
     if (!haunt) {
         return null;
     }
 
     if (currUser && haunt.userId === currUser.id) {
-        console.log('success!')
         if (!isUser) {
             setIsUser(true);
         }
@@ -59,6 +61,7 @@ export default function HauntPage () {
                 </>
             )}
             {content}
+            <Reviews haunt={haunt}/>
         </div>
     )
 }

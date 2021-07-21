@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { getHaunts } from '../../store/haunts';
 import { useDispatch, useSelector } from 'react-redux';
+import { getReviews } from '../../store/reviews';
 // import * as sessionActions from '../../store/session';
 // import { getAllHaunts } from '../../store/haunts';
 import HauntTile from '../HauntTile';
@@ -12,6 +13,7 @@ export default function HomePage () {
     const haunts = useSelector(state => Object.values(state.haunts));
     useEffect(() => {
         dispatch(getHaunts());
+        dispatch(getReviews());
     }, [dispatch])
 
     return (

@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
-const { Haunt } = require('../../db/models');
+const { Haunt, Image, Review } = require('../../db/models');
 
 const router = express.Router();
 
@@ -50,6 +50,16 @@ router.put( '/:id', asyncHandler( async (req, res) => {
 
 router.delete('/:id', asyncHandler( async (req, res) => {
     const { id } = req.params;
+    await Review.destroy({
+        where: {
+            hauntId: id,
+        }
+    })
+    await Image.destroy({
+        where: {
+            hauntId: id,
+        }
+    })
     await Haunt.destroy({
         where: { id }
     });
