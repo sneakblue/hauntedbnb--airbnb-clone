@@ -30,7 +30,7 @@ export default function ProfileButton({ user }) {
 
     return (
         <>
-            <button onClick={openMenu} className='profile-btn'>
+            <button onClick={openMenu} className='nav-btn'>
                 ≡ Profile
             </button>
             {showMenu && (
@@ -38,7 +38,7 @@ export default function ProfileButton({ user }) {
                     <li className='dropdown-info'>{user.username}</li>
                     <li className='dropdown-info'>{user.email}</li>
                     <li className='dropdown-info'>
-                        <button onClick={logout}>Log Out</button>
+                        <button onClick={logout} className='dropdown-logout-btn'>Log Out</button>
                     </li>
                 </ul>
             )}

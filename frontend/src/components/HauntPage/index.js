@@ -55,7 +55,7 @@ export default function HauntPage () {
                 <h1>{haunt.name}</h1>
             </div>
             <div className='haunt-img-div'>
-                <img src={haunt.imgUrl} alt='haunt' className='haunt-img'/>
+                <img src={haunt.imgUrl[0]} alt='haunt' className='haunt-img'/>
             </div>
             <p>{haunt.address}, {haunt.city}, {haunt.state}, {haunt.country}</p>
             <p>${haunt.price} / Night</p>

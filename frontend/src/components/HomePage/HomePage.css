@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     justify-content: center;
     background-color: darkslategrey;
+    min-height: 100vh;
 }
 
 .title-div {

@@ -1,13 +1,14 @@
 .login-div {
-    border: 2px solid white;
+    background-color: whitesmoke;
     border-radius: 5px;
+    box-shadow: 0px 0px 10px white;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 80%;
+    width: 50%;
     height: 50%;
-    color: white;
+    color: black;
 }
 
 .login-main-div {
@@ -21,13 +22,27 @@
     background-color: darkslategrey;
 }
 
+.login-btns {
+    display: flex;
+    justify-content: center;
+}
+
 .login-btn {
     border-radius: 10px;
-    background-color: aqua;
+    background-color: lightblue;
     height: 40px;
     width: 60px;
     margin: 5px;
     font-weight: bold;
+}
+.login-btn:hover {
+    background-color: whitesmoke;
+    box-shadow: 2px 2px 5px black;
+    transition: background-color 0.5s;
+}
+
+.login-btn:active {
+    box-shadow: -2px -2px 5px black;
 }
 
 .login-error {

@@ -61,13 +61,15 @@ export default function LoginFormPage () {
                         value={password}
                         onChange={((e) => setPassword(e.target.value))}
                     />
-                    <button type='submit' className='login-btn'>Log In</button>
-                    <button
-                        type='button'
-                        className='login-btn'
-                        onClick={handleDemo}
-                    >Demo
-                    </button>
+                    <div className='login-btns'>
+                        <button type='submit' className='login-btn'>Log In</button>
+                        <button
+                            type='button'
+                            className='login-btn'
+                            onClick={handleDemo}
+                        >Demo
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
