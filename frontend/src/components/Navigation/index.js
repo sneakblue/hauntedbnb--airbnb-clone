@@ -11,7 +11,9 @@ export default function Navigation ({ isLoaded }) {
         sessionLinks = (
             <>
                 <NavLink to='/haunts/create' className='nav-btn'>Create a Haunt</NavLink>
-                <ProfileButton user={sessionUser} />
+                <div className='dropdown-container'>
+                    <ProfileButton user={sessionUser} />
+                </div>
             </>
         );
     } else {
@@ -23,8 +25,11 @@ export default function Navigation ({ isLoaded }) {
         );
     }
     return (
-        <div className='navbar'>
-            <nav>
+        <div className='navbar-container'>
+            <div className='logo'>
+                <h4>Logo</h4>
+            </div>
+            <nav className='navbar'>
                 <NavLink exact to='/' className='nav-btn'>Home</NavLink>
                 {isLoaded && sessionLinks}
             </nav>

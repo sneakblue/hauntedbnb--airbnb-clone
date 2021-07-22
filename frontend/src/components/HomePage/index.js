@@ -18,7 +18,9 @@ export default function HomePage () {
 
     return (
         <>
-            <h1>HomePage</h1>
+            <div className='title-div'>
+                <h1>Current Haunts</h1>
+            </div>
             <div className='hauntTile-container'>
                 {haunts.map((haunt) => {
                     return <HauntTile haunt={haunt} key={haunt.id}/>

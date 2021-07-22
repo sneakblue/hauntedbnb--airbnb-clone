@@ -18,13 +18,15 @@ export default function Reviews ({ haunt }) {
             hauntReviews.push(review)
         }
     });
+    if (currUser) {
+        hauntReviews.forEach(review => {
+            if (review.userId === currUser.id && !hasReview) {
+                setHasReview(true);
+                setSelectedReview(review);
+            }
+        });
+    }
 
-    hauntReviews.forEach(review => {
-        if (review.userId === currUser.id && !hasReview) {
-            setHasReview(true);
-            setSelectedReview(review);
-        }
-    });
     let content;
     if (showEdit) {
 
@@ -36,10 +38,6 @@ export default function Reviews ({ haunt }) {
             <>
             </>
         )
-    }
-
-    const handleDelete = (id) => {
-
     }
 
     return (
@@ -58,7 +56,7 @@ export default function Reviews ({ haunt }) {
                         <div key={review.id}>
                             <p>{review.review}</p>
                             <h4>{`Rating: ${review.rating}`}</h4>
-                            {review.userId === currUser.id && (
+                            {currUser && review.userId === currUser.id && (
                                 <>
                                     <button onClick={() => showEdit === true ? setShowEdit(false) : setShowEdit(true)}>Edit Review</button>
                                     <button onClick={() => dispatch(removeReview(review.id))}>Delete Review</button>

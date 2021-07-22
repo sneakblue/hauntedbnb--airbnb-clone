@@ -1,0 +1,21 @@
+.haunt-img-div {
+    display: flex;
+    height: 500px;
+    width: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.haunt-img {
+    height: 100%;
+    width: 100%;
+}
+
+.main-haunt-div {
+    padding-left: 20px;
+    background-color: darkslategray;
+}
+
+.haunt-title {
+    color: white;
+}
