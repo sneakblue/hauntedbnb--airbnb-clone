@@ -28,7 +28,7 @@ export default function CreateReview ({haunt, currUser, hauntReviews}) {
                 rating
             }
             dispatch(postReview(newReview));
-            history.push('/');
+            history.push(`/haunts/${haunt.id}`);
         }
 
     }
