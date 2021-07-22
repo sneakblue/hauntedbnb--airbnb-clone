@@ -3,9 +3,17 @@
     width: 300px;
     display: flex;
     margin: 10px;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0px 0px 10px white;
+    background-color: darkslategrey;
+}
+
+.hauntTile-main-div:hover {
+    background-color: black;
+    box-shadow: 0px 0px 5px whitesmoke;
+    transition: background-color 0.5s;
 }
 
 .hauntTile-img {
@@ -15,6 +23,22 @@
 
 .hauntTile-name {
     text-decoration: none;
-    color: black;
+    color: red;
     cursor: pointer;
+    margin-left: 20px;
+}
+
+.hauntTile-address {
+    margin-left: 20px;
+    color: lightgrey;
+}
+
+.hauntTile-price {
+    margin-left: 20px;
+    color: white;
+}
+
+.hauntTile-activity {
+    margin-left: 20px;
+    color: white;
 }

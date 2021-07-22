@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateHaunt } from '../../store/haunts';
-import { useHistory } from 'react-router-dom';
 
 export default function EditHaunt ({ haunt }) {
     const [name, setName] = useState(haunt.name);
@@ -13,11 +12,10 @@ export default function EditHaunt ({ haunt }) {
     const [lng, setLng] = useState(haunt.lng);
     const [price, setPrice] = useState(haunt.price);
     const [activity, setActivity] = useState(haunt.activity);
-    const [image, setImage] = useState(haunt.image);
-    // const [userId, setUserId] = useState(haunt.userId);
+    // const [image, setImage] = useState(haunt.imgUrl[0]);
     const [errors, setErrors] = useState([]);
+    // const [update, setUpdate] = useState(false);
     const dispatch = useDispatch();
-    const history = useHistory();
 
     useEffect(() => {
         const errors = [];
@@ -71,7 +69,7 @@ export default function EditHaunt ({ haunt }) {
                 id: haunt.id
             }
             dispatch(updateHaunt(updatedHaunt));
-            history.push(`/`)
+            setErrors([]);
         }
     }
 
@@ -165,7 +163,7 @@ export default function EditHaunt ({ haunt }) {
                         onChange={e => setActivity(e.target.value)}
                     />
                 </div>
-                <div>
+                {/* <div>
                     <label htmlFor='image'>Image URL</label>
                     <input
                         type='text'
@@ -173,7 +171,7 @@ export default function EditHaunt ({ haunt }) {
                         value={image}
                         onChange={e => setImage(e.target.value)}
                     />
-                </div>
+                </div> */}
                 <button type='submit'>Submit Changes</button>
             </form>
         </div>

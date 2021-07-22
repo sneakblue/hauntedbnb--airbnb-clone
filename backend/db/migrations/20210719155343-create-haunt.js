@@ -45,6 +45,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DECIMAL
       },
+      description: {
+          allowNull: false,
+          type: Sequelize.Text
+      },
       activity: {
           allowNull: false,
           type: Sequelize.INTEGER

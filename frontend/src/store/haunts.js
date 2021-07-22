@@ -13,9 +13,10 @@ export default function hauntsReducer (state = initialState, action) {
         case LOAD_HAUNTS: {
             const newHaunts = {};
             action.list.forEach(haunt => {
+                haunt.imgUrl = [];
                 action.images.forEach(image => {
                     if (image.hauntId === haunt.id) {
-                        haunt.imgUrl = image.url;
+                        haunt.imgUrl.push(image.url);
                     }
                 })
                 newHaunts[haunt.id] = haunt;
@@ -32,6 +33,10 @@ export default function hauntsReducer (state = initialState, action) {
         case CREATE_HAUNT: {
             const newState = {...state};
             const newHaunt = action.haunt;
+            let newImages = [];
+            action.images.forEach(image => {
+                newImages.push(image.url);
+            })
 
             newState[newHaunt.haunt.id] = {
                 id: newHaunt.haunt.id,
@@ -44,15 +49,18 @@ export default function hauntsReducer (state = initialState, action) {
                 lng: newHaunt.haunt.lng,
                 name: newHaunt.haunt.name,
                 price: newHaunt.haunt.price,
-                activity: newHaunt.haunt.activity
+                activity: newHaunt.haunt.activity,
+                imgUrl: newImages,
             };
             return newState;
         }
         case UPDATE: {
+            const image = state[action.haunt.updatedHaunt.id].imgUrl;
             return {
                 ...state,
                 [action.haunt.updatedHaunt.id]: {
-                    ...action.haunt.updatedHaunt
+                    ...action.haunt.updatedHaunt,
+                    imgUrl: image,
                 }
             }
         }
@@ -78,9 +86,10 @@ const loadHaunts = (list, images) => ({
 //     images
 // })
 
-const createHaunt = haunt => ({
+const createHaunt = (haunt, images) => ({
     type: CREATE_HAUNT,
-    haunt
+    haunt,
+    images
 })
 
 const update = haunt => ({
@@ -114,15 +123,25 @@ export const getHaunts = () => async dispatch => {
 // }
 
 export const newHaunt = (haunt) => async dispatch => {
-    const { userId, address, city, state, country, lat, lng, name, price, activity } = haunt;
-    const response = await csrfFetch('/api/haunts/create', {
+    const { userId, address, city, state, country, lat, lng, name, price, activity, images } = haunt;
+    const hauntResponse = await csrfFetch('/api/haunts/create', {
         method: 'POST',
         body: JSON.stringify({ userId, address, city, state, country, lat, lng, name, price, activity })
     });
-
-    if(response.ok) {
-        const createdHaunt = await response.json();
-        dispatch(createHaunt(createdHaunt));
+    if(hauntResponse.ok) {
+        const createdHaunt = await hauntResponse.json();
+        let newImages = [];
+        images.forEach( async image => {
+            const response = await csrfFetch('/api/images/create', {
+                method: 'POST',
+                body: JSON.stringify({ hauntId: createdHaunt.haunt.id, url: image })
+            });
+            if (response.ok) {
+                const createdImage = await response.json();
+                newImages.push(createdImage.image)
+            };
+        });
+        dispatch(createHaunt(createdHaunt, newImages));
         return createHaunt;
     };
 };

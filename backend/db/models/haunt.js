@@ -37,6 +37,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DECIMAL,
         allowNull: false,
     },
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
     activity: {
         type: DataTypes.INTEGER,
         allowNull: false,

@@ -34,13 +34,14 @@ export default function SignupFormPage () {
                 className='signup-form'
                 onSubmit={handleSubmit}
             >
-                <h2>Signup Form Page</h2>
+                <h2>Signup</h2>
                 <ul>
                     {errors.map((error, i) => <li key={i} className='error'>{error}</li>)}
                 </ul>
                 <label htmlFor='username'>Username</label>
                 <input
                     type='text'
+                    className='signup-form-input'
                     name='username'
                     value={username}
                     onChange={e => setUsername(e.target.value)}
@@ -48,6 +49,7 @@ export default function SignupFormPage () {
                 <label htmlFor='email'>Email</label>
                 <input
                     type='email'
+                    className='signup-form-input'
                     name='email'
                     value={email}
                     onChange={e => setEmail(e.target.value)}
@@ -55,6 +57,7 @@ export default function SignupFormPage () {
                 <label htmlFor='password'>password</label>
                 <input
                     type='password'
+                    className='signup-form-input'
                     name='password'
                     value={password}
                     onChange={e => setPassword(e.target.value)}
@@ -62,6 +65,7 @@ export default function SignupFormPage () {
                 <label htmlFor='confirmPassword'>Confirm Password</label>
                 <input
                     type='password'
+                    className='signup-form-input'
                     name='confirmPassword'
                     value={confirmPassword}
                     onChange={e => setConfirmPassword(e.target.value)}

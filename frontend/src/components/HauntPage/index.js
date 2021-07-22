@@ -5,6 +5,7 @@ import { getHaunts, removeHaunt } from "../../store/haunts";
 import { getReviews } from "../../store/reviews";
 import EditHaunt from "../EditHaunt";
 import Reviews from "../Reviews";
+import './HauntPage.css';
 
 export default function HauntPage () {
     const dispatch = useDispatch();
@@ -49,9 +50,13 @@ export default function HauntPage () {
     }
 
     return (
-        <div>
-            <h1>{haunt.name}</h1>
-            <img src={haunt.imgUrl} alt='haunt'/>
+        <div className='main-haunt-div'>
+            <div className='haunt-title'>
+                <h1>{haunt.name}</h1>
+            </div>
+            <div className='haunt-img-div'>
+                <img src={haunt.imgUrl[0]} alt='haunt' className='haunt-img'/>
+            </div>
             <p>{haunt.address}, {haunt.city}, {haunt.state}, {haunt.country}</p>
             <p>${haunt.price} / Night</p>
             {isUser && (

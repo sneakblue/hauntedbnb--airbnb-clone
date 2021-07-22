@@ -30,15 +30,15 @@ export default function ProfileButton({ user }) {
 
     return (
         <>
-            <button onClick={openMenu} className='profile-btn'>
+            <button onClick={openMenu} className='nav-btn'>
                 ≡ Profile
             </button>
             {showMenu && (
                 <ul className='profile-dropdown'>
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
-                    <li>
-                        <button onClick={logout}>Log Out</button>
+                    <li className='dropdown-info'>{user.username}</li>
+                    <li className='dropdown-info'>{user.email}</li>
+                    <li className='dropdown-info'>
+                        <button onClick={logout} className='dropdown-logout-btn'>Log Out</button>
                     </li>
                 </ul>
             )}
