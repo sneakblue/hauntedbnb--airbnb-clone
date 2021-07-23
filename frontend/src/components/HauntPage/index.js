@@ -17,6 +17,9 @@ export default function HauntPage () {
     const currUser = useSelector(state => state.session.user);
     const reviews = useSelector(state => Object.values(state.reviews));
 
+    useEffect(() => {
+
+    },[reviews])
 
     useEffect(() => {
         dispatch(getHaunts());
@@ -101,8 +104,8 @@ export default function HauntPage () {
                 </div>
                 {isUser && (
                     <div>
-                        <button onClick={() => showForm === true ? setShowForm(false) : setShowForm(true)}>Edit</button>
-                        <button onClick={deleteHaunt}>Delete Haunt</button>
+                        <button className='haunt-details-btn' onClick={() => showForm === true ? setShowForm(false) : setShowForm(true)}>Edit</button>
+                        <button className='haunt-details-btn' onClick={deleteHaunt}>Delete Haunt</button>
                     </div>
                 )}
                 {content}

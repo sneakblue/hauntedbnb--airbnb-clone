@@ -70,7 +70,7 @@ export default function SignupFormPage () {
                     value={confirmPassword}
                     onChange={e => setConfirmPassword(e.target.value)}
                 />
-                <button type='submit'>Submit</button>
+                <button type='submit' className='signup-btn'>Submit</button>
             </form>
         </div>
     )

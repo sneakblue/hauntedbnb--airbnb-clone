@@ -6,6 +6,8 @@
     padding-top: 25px;
     padding-bottom: 25px;
     background-color: darkslategray;
+    background-image: url('../../images/Smoke4.jpg');
+    background-size: cover;
     height: 100vh;
     width: 100%;
 }
@@ -29,6 +31,26 @@
 
 .create-title {
     color: white;
+}
+
+.create-haunt-btn {
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px;
+}
+
+.create-haunt-btn:hover {
+    box-shadow: 2px 2px 5px black;
+}
+
+.create-haunt-btn:active {
+    box-shadow: -2px -2px 1px black;
 }
 
 .errors {
@@ -61,4 +83,15 @@
     width: 50%;
     padding: 0;
     font-weight: lighter;
+}
+
+.input-textarea {
+    width: 50%;
+    height: 50px;
+    overflow: auto;
+    border-radius: 5px;
+}
+
+.create-haunt-input {
+    border-radius: 5px;
 }

@@ -34,25 +34,28 @@ export default function CreateReview ({haunt, currUser, hauntReviews}) {
     }
 
     return (
-        <>
+        <div className='submit-review-main-div'>
             <h2>Submit a Review</h2>
-            <ul>
+            <ul className='errors'>
                 {errors.map(error => <li key={error}>{error}</li>)}
             </ul>
             <form
+                className='submit-review-form'
                 onSubmit={handleSubmit}
             >
-                <div>
+                <div className='submit-review-write-div'>
                     <label htmlFor='review'>Write a review:</label>
                     <textarea
                         name='review'
+                        className='submit-review-textarea-input'
                         value={review}
                         onChange={e => setReview(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='submit-review-rate-div'>
                     <label htmlFor='rating'>Rate:</label>
                     <select
+                        className='submit-review-rating-input'
                         value={rating}
                         onChange={e => setRating(e.target.value)}
                     >
@@ -68,8 +71,10 @@ export default function CreateReview ({haunt, currUser, hauntReviews}) {
                         <option>10</option>
                     </select>
                 </div>
-                <button type='submit'>Submit Review</button>
+                <div className='submit-review-btn-div'>
+                    <button type='submit' className='submit-review-btn'>Submit Review</button>
+                </div>
             </form>
-        </>
+        </div>
     )
 }

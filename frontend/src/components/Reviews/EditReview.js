@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateReview } from '../../store/reviews';
 
-export default function EditReview ({ selectedReview }) {
+export default function EditReview ({ selectedReview, setShowEdit }) {
     const dispatch = useDispatch();
     const [review, setReview] = useState(selectedReview.review);
     const [rating, setRating] = useState(selectedReview.rating);
@@ -16,7 +16,8 @@ export default function EditReview ({ selectedReview }) {
         setErrors(errors);
     }, [review])
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if (errors.length === 0) {
             const newReview = {
                 id: selectedReview.id,
@@ -26,27 +27,30 @@ export default function EditReview ({ selectedReview }) {
                 rating
             };
             dispatch(updateReview(newReview));
+            setShowEdit(false);
         }
     }
 
     return (
-        <>
-            <h2>Edit Review Component</h2>
-            <ul>
+        <div className='edit-review-main-div'>
+            <h2>Edit Review</h2>
+            <ul className='errors'>
                 {errors.map(error => <li key={error}>{error}</li>)}
             </ul>
             <form
+                className='review-edit-form'
                 onSubmit={handleSubmit}
             >
-                <div>
+                <div className='review-edit-form-text-div'>
                     <label htmlFor='review'>Write a review:</label>
                     <textarea
                         name='review'
                         value={review}
+                        className='review-edit-form-textarea'
                         onChange={e => setReview(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='review-edit-form-rating-div'>
                     <label htmlFor='rating'>Rate:</label>
                     <select
                         value={rating}
@@ -64,8 +68,10 @@ export default function EditReview ({ selectedReview }) {
                         <option>10</option>
                     </select>
                 </div>
-                <button type='submit'>Submit Review</button>
+                <div className='edit-review-submit-btn-div'>
+                    <button type='submit' className='review-edit-btn'>Submit Review</button>
+                </div>
             </form>
-        </>
+        </div>
     )
 }

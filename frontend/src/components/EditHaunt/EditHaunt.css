@@ -3,8 +3,49 @@
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
+    width: 100%;
 }
 
 .edit-input-div {
     margin: 5px 0px 5px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-haunt-btn {
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px;
+}
+
+.edit-haunt-btn:hover {
+    box-shadow: 2px 2px 5px black;
+}
+
+.edit-haunt-btn:active {
+    box-shadow: -2px -2px 1px black;
+}
+
+.edit-haunt-textarea {
+    width: 50%;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.edit-haunt-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.edit-haunt-input {
+    border-radius: 5px;
 }

@@ -104,6 +104,7 @@ export default function CreateHaunt () {
                 <div className='input-div'>
                     <label htmlFor='name'>Name</label>
                     <input
+                        className='create-haunt-input'
                         type='text'
                         name='name'
                         value={name}
@@ -113,6 +114,7 @@ export default function CreateHaunt () {
                 <div className='input-div'>
                     <label htmlFor='address'>Address</label>
                     <input
+                        className='create-haunt-input'
                         type='text'
                         name='address'
                         value={address}
@@ -122,6 +124,7 @@ export default function CreateHaunt () {
                 <div className='input-div'>
                     <label htmlFor='city'>City</label>
                     <input
+                        className='create-haunt-input'
                         type='text'
                         name='city'
                         value={city}
@@ -131,6 +134,7 @@ export default function CreateHaunt () {
                 <div className='input-div'>
                     <label htmlFor='state'>State</label>
                     <input
+                        className='create-haunt-input'
                         type='text'
                         name='state'
                         value={state}
@@ -140,6 +144,7 @@ export default function CreateHaunt () {
                 <div className='input-div'>
                     <label htmlFor='country'>Country</label>
                     <input
+                        className='create-haunt-input'
                         type='text'
                         name='country'
                         value={country}
@@ -149,7 +154,8 @@ export default function CreateHaunt () {
                 <div className='input-div'>
                     <label htmlFor='lat'>Lattitude</label>
                     <input
-                        type='decimal'
+                        className='create-haunt-input'
+                        type='number'
                         name='lat'
                         value={lat}
                         onChange={e => setLat(e.target.value)}
@@ -158,7 +164,8 @@ export default function CreateHaunt () {
                 <div className='input-div'>
                     <label htmlFor='lng'>Longitude</label>
                     <input
-                        type='decimal'
+                        className='create-haunt-input'
+                        type='number'
                         name='lng'
                         value={lng}
                         onChange={e => setLng(e.target.value)}
@@ -167,7 +174,8 @@ export default function CreateHaunt () {
                 <div className='input-div'>
                     <label htmlFor='price'>Price per Night</label>
                     <input
-                        type='decimal'
+                        className='create-haunt-input'
+                        type='number'
                         name='price'
                         value={price}
                         onChange={e => setPrice(e.target.value)}
@@ -176,6 +184,7 @@ export default function CreateHaunt () {
                 <div className='input-div'>
                     <label htmlFor='description'>Description</label>
                     <textarea
+                        className='input-textarea'
                         name='description'
                         value={description}
                         onChange={e => setDescription(e.target.value)}
@@ -218,9 +227,9 @@ export default function CreateHaunt () {
                         value={image}
                         onChange={e => setImage(e.target.value)}
                     />
-                    <button type='button' onClick={handleImage}>Add photo</button>
+                    <button type='button' className='create-haunt-btn' onClick={handleImage}>Add photo</button>
                 </div>
-                <button type='submit'>Create Haunt</button>
+                <button type='submit' className='create-haunt-btn'>Create Haunt</button>
             </form>
         </div>
     )

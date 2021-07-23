@@ -7,7 +7,6 @@ export default function ProfileButton({ user }) {
     const [showMenu, setShowMenu] = useState(false);
 
     const openMenu = () => {
-        console.log('im opening')
         if (showMenu) return;
         setShowMenu(true);
     };
@@ -26,7 +25,6 @@ export default function ProfileButton({ user }) {
 
     const logout = e => {
         e.preventDefault();
-        console.log('im logging out');
         dispatch(sessionActions.logout());
     };
 

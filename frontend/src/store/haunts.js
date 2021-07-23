@@ -1,7 +1,6 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_HAUNTS = 'haunts/LOAD_HAUNTS';
-// const LOAD_IMAGES = 'haunts/LOAD_IMAGES';
 const CREATE_HAUNT = 'haunts/CREATE_HAUNT';
 const UPDATE = 'haunts/UPDATE';
 const DELETE = 'haunts/DELETE';
@@ -23,13 +22,6 @@ export default function hauntsReducer (state = initialState, action) {
             });
             return { ...state, ...newHaunts};
         }
-        // case LOAD_IMAGES: {
-        //     const newState = { ...state };
-        //     action.images.images.forEach(image => {
-        //         newState.haunts[image.hauntId].imgUrl = image;
-        //     });
-        //     return newState;
-        // }
         case CREATE_HAUNT: {
             const newState = {...state};
             const newHaunt = action.haunt;
@@ -82,11 +74,6 @@ const loadHaunts = (list, images) => ({
     images
 });
 
-// const loadImages = images => ({
-//     type: LOAD_IMAGES,
-//     images
-// })
-
 const createHaunt = (haunt, images) => ({
     type: CREATE_HAUNT,
     haunt,
@@ -113,15 +100,6 @@ export const getHaunts = () => async dispatch => {
         dispatch(loadHaunts(list.haunts, images.images));
     }
 };
-
-// export const getImages = () => async dispatch => {
-//     const response = await csrfFetch('/api/images');
-
-//     if (response.ok) {
-//         const images = await response.json();
-//         dispatch(loadImages(images));
-//     }
-// }
 
 export const newHaunt = (haunt) => async dispatch => {
     const { userId, address, city, state, country, lat, lng, name, price, activity, description, images } = haunt;

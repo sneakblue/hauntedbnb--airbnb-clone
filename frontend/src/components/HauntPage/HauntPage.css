@@ -3,7 +3,7 @@
     flex-direction: column;
     /* min-height: 500px; */
     /* max-height: 600px; */
-    height: auto;
+    height: 40%;
     width: 49%;
     border-radius: 10px;
     overflow: hidden;
@@ -18,7 +18,10 @@
 .main-haunt-div {
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 20px;
     background-color: darkslategray;
+    background-image: url('../../images/Smoke6.jpg');
+    background-size: cover;
     min-height: 100vh;
     display: flex;
     justify-content: space-between;
@@ -28,7 +31,7 @@
 }
 
 .haunt-title {
-    color: white;
+    color: red;
     width: 100%;
     margin: 5px;
     padding: 10px;
@@ -50,6 +53,7 @@
     margin-left: 15px;
     border-radius: 5px;
     position: relative;
+    font-weight: bold;
     /* top: 35px; */
 }
 
@@ -57,4 +61,24 @@
     padding-left: 10px;
     /* border-bottom: 1px solid black; */
     width: 100%;
+}
+
+.haunt-details-btn {
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px;
+}
+
+.haunt-details-btn:hover {
+    box-shadow: 2px 2px 5px black;
+}
+
+.haunt-details-btn:active {
+    box-shadow: -2px -2px 1px black;
 }

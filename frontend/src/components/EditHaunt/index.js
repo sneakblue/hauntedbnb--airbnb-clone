@@ -83,6 +83,7 @@ export default function EditHaunt ({ haunt }) {
         <div className='edit-haunt-main-div'>
             <h2>Edit Haunt</h2>
             <form
+                className='edit-haunt-form'
                 onSubmit={handleSubmit}
             >
                 <ul className='errors'>
@@ -94,6 +95,7 @@ export default function EditHaunt ({ haunt }) {
                         type='text'
                         name='name'
                         value={name}
+                        className='edit-haunt-input'
                         onChange={e => setName(e.target.value)}
                     />
                 </div>
@@ -103,6 +105,7 @@ export default function EditHaunt ({ haunt }) {
                         type='text'
                         name='address'
                         value={address}
+                        className='edit-haunt-input'
                         onChange={e => setAddress(e.target.value)}
                     />
                 </div>
@@ -112,6 +115,7 @@ export default function EditHaunt ({ haunt }) {
                         type='text'
                         name='city'
                         value={city}
+                        className='edit-haunt-input'
                         onChange={e => setCity(e.target.value)}
                     />
                 </div>
@@ -121,6 +125,7 @@ export default function EditHaunt ({ haunt }) {
                         type='text'
                         name='state'
                         value={state}
+                        className='edit-haunt-input'
                         onChange={e => setState(e.target.value)}
                     />
                 </div>
@@ -130,62 +135,70 @@ export default function EditHaunt ({ haunt }) {
                         type='text'
                         name='country'
                         value={country}
+                        className='edit-haunt-input'
                         onChange={e => setCountry(e.target.value)}
                     />
                 </div>
                 <div className='edit-input-div'>
                     <label htmlFor='lat'>Lattitude</label>
                     <input
-                        type='decimal'
+                        type='number'
                         name='lat'
                         value={lat}
+                        className='edit-haunt-input'
                         onChange={e => setLat(e.target.value)}
                     />
                 </div>
                 <div className='edit-input-div'>
                     <label htmlFor='lng'>Longitude</label>
                     <input
-                        type='decimal'
+                        type='number'
                         name='lng'
                         value={lng}
+                        className='edit-haunt-input'
                         onChange={e => setLng(e.target.value)}
                     />
                 </div>
                 <div className='edit-input-div'>
                     <label htmlFor='price'>Price per Night</label>
                     <input
-                        type='decimal'
+                        type='number'
                         name='price'
                         value={price}
+                        className='edit-haunt-input'
                         onChange={e => setPrice(e.target.value)}
                     />
                 </div>
                 <div className='edit-input-div'>
                     <label htmlFor='description'>Description</label>
                     <textarea
+                        className='edit-haunt-textarea'
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
                 </div>
                 <div className='edit-input-div'>
                     <label htmlFor='activity'>Paranormal Activity level</label>
-                    <input
+                    <select
                         type='number'
                         name='activity'
                         value={activity}
+                        className='edit-haunt-input'
                         onChange={e => setActivity(e.target.value)}
-                    />
+                    >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
                 </div>
-                {/* <div>
-                    <label htmlFor='image'>Image URL</label>
-                    <input
-                        type='text'
-                        name='image'
-                        value={image}
-                        onChange={e => setImage(e.target.value)}
-                    />
-                </div> */}
-                <button type='submit'>Submit Changes</button>
+                <button className='edit-haunt-btn' type='submit'>Submit Changes</button>
             </form>
         </div>
     )

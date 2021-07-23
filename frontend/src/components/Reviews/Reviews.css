@@ -8,3 +8,179 @@
     border-radius: 5px;
     margin-top: 10px;
 }
+
+.reviews-list-container {
+    /* border: 1px solid black; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.single-review-div {
+    /* border: 1px solid black; */
+    box-shadow: 0px 0px 10px black;
+    width: 95%;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.errors {
+    color: red;
+}
+
+.review-edit-btn {
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px;
+}
+
+.review-edit-btn:hover {
+    box-shadow: 2px 2px 5px black;
+}
+
+.review-edit-btn:active {
+    box-shadow: -2px -2px 1px black;
+}
+
+.review-text {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+}
+
+.review-rating {
+    width: 50%;
+}
+
+.submit-review-main-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.submit-review-form {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.submit-review-write-div {
+    width: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.submit-review-textarea-input {
+    width: 60%;
+    height: 100px;
+    border-radius: 5px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.submit-review-rate-div {
+    width: 48%;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+}
+
+.submit-review-btn-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.submit-review-btn {
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px;
+}
+
+.submit-review-btn:hover {
+    box-shadow: 2px 2px 5px black;
+}
+
+.submit-review-btn:active {
+    box-shadow: -2px -2px 1px black;
+}
+
+.submit-review-rating-input {
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px;
+}
+
+.edit-review-main-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.review-edit-form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.review-edit-form-text-div {
+    width: 48%;
+    display: flex;
+    justify-content: center;
+}
+.review-edit-form-rating-div {
+    width: 48%;
+}
+
+.review-edit-delete-div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.edit-review-submit-btn-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.review-edit-form-textarea {
+    width: 60%;
+    height: 100px;
+    border-radius: 5px;
+    overflow-y: auto;
+    overflow-x: auto;
+}

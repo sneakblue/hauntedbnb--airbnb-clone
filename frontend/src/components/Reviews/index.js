@@ -19,6 +19,12 @@ export default function Reviews ({ haunt, hauntReviews }) {
     //         hauntReviews.push(review)
     //     }
     // });
+
+    const handleDelete = async (reviewId) => {
+        await dispatch(removeReview(reviewId))
+        setHasReview(false);
+    }
+
     if (currUser) {
         hauntReviews.forEach(review => {
             if (review.userId === currUser.id && !hasReview) {
@@ -32,7 +38,7 @@ export default function Reviews ({ haunt, hauntReviews }) {
     if (showEdit) {
 
         content = (
-            <EditReview selectedReview={selectedReview} />
+            <EditReview selectedReview={selectedReview} setShowEdit={setShowEdit} />
         )
     } else {
         content = (
@@ -51,16 +57,22 @@ export default function Reviews ({ haunt, hauntReviews }) {
                     hauntReviews={hauntReviews}
                 />
             )}
-            <div>
+            <div className='reviews-list-container'>
                 {hauntReviews.map(review => {
+                    let rating = '';
+                    for (let i = 0; i < review.rating; i++) {
+                        rating += '⭐'
+                    }
                     return (
-                        <div key={review.id}>
-                            <p>{review.review}</p>
-                            <h4>{`Rating: ${review.rating}`}</h4>
+                        <div key={review.id} className='single-review-div'>
+                            <p className='review-text'>{review.review}</p>
+                            <h4 className='review-rating'>{`Rating: ${rating}`}</h4>
                             {currUser && review.userId === currUser.id && (
                                 <>
-                                    <button onClick={() => showEdit === true ? setShowEdit(false) : setShowEdit(true)}>Edit Review</button>
-                                    <button onClick={() => dispatch(removeReview(review.id))}>Delete Review</button>
+                                    <div className='review-edit-delete-div'>
+                                        <button className='review-edit-btn' onClick={() => showEdit === true ? setShowEdit(false) : setShowEdit(true)}>Edit</button>
+                                        <button className='review-edit-btn' onClick={() => handleDelete(review.id)}>Delete Review</button>
+                                    </div>
                                     {content}
                                 </>
                             )}
