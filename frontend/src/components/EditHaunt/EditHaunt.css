@@ -1,0 +1,10 @@
+.edit-haunt-main-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.edit-input-div {
+    margin: 5px 0px 5px 0px;
+}

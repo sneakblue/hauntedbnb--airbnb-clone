@@ -7,7 +7,6 @@ export default function EditReview ({ selectedReview }) {
     const [review, setReview] = useState(selectedReview.review);
     const [rating, setRating] = useState(selectedReview.rating);
     const [errors, setErrors] = useState([]);
-    console.log(selectedReview);
 
     useEffect(() => {
         const errors = [];

@@ -17,7 +17,7 @@ export default function HomePage () {
     }, [dispatch])
 
     return (
-        <>
+        <div className='main-home-div'>
             <div className='title-div'>
                 <h1>Current Haunts</h1>
             </div>
@@ -26,6 +26,6 @@ export default function HomePage () {
                     return <HauntTile haunt={haunt} key={haunt.id}/>
                 })}
             </div>
-        </>
+        </div>
     )
 }

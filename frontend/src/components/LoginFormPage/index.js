@@ -13,7 +13,7 @@ export default function LoginFormPage () {
     const [errors, setErrors] = useState([]);
 
     if (currUser) return (
-        <Redirect to='/' />
+        <Redirect to='/haunts' />
     )
 
     const handleSubmit = (e) => {

@@ -1,6 +1,7 @@
 .dropdown-container {
     position: relative;
     display: inline-block;
+    z-index: 1;
 }
 
 .profile-dropdown {
@@ -23,7 +24,26 @@
 }
 
 .dropdown-logout-btn {
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px;
+}
 
+.dropdown-logout-btn:hover {
+    background-color: lightgray;
+    box-shadow: 2px 2px 5px black;
+    transition: background-color 0.5s;
+    border: 1px solid rgba(0, 0, 0, 0.5)
+}
+
+.dropdown-logout-btn:active {
+    box-shadow: -2px -2px 1px black;
 }
 
 .profile-btn {

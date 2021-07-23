@@ -6,6 +6,7 @@ import SignupFormPage from './components/SignupFormPage';
 import HomePage from './components/HomePage';
 import HauntPage from './components/HauntPage';
 import CreateHaunt from './components/CreateHaunt';
+import Landing from './components/Landing';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 
@@ -26,6 +27,9 @@ function App() {
                 <SignupFormPage />
             </Route>
             <Route exact path='/'>
+                <Landing />
+            </Route>
+            <Route exact path='/haunts'>
                 <HomePage />
             </Route>
             <Route exact path='/haunts/create'>

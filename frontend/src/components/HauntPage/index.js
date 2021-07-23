@@ -15,6 +15,8 @@ export default function HauntPage () {
     const [showForm, setShowForm] = useState(false);
     const haunt = useSelector(state => state.haunts[id]);
     const currUser = useSelector(state => state.session.user);
+    const reviews = useSelector(state => Object.values(state.reviews));
+
 
     useEffect(() => {
         dispatch(getHaunts());
@@ -25,6 +27,13 @@ export default function HauntPage () {
         return null;
     }
 
+    const hauntReviews = [];
+    reviews.forEach(review => {
+        if (review.hauntId === haunt.id) {
+            hauntReviews.push(review)
+        }
+    });
+
     if (currUser && haunt.userId === currUser.id) {
         if (!isUser) {
             setIsUser(true);
@@ -33,7 +42,7 @@ export default function HauntPage () {
 
     const deleteHaunt = () => {
         dispatch(removeHaunt(id));
-        history.push('/');
+        history.push('/haunts');
     }
 
     let content = null;
@@ -49,6 +58,23 @@ export default function HauntPage () {
         )
     }
 
+    let paranormalRating = '';
+    for (let i = 0; i < haunt.activity; i++) {
+        paranormalRating += '👻'
+    }
+
+    let comfortRating = '';
+    if (hauntReviews.length > 0) {
+        let sumRating = 0;
+        for (let i = 0; i < hauntReviews.length; i++) {
+            sumRating += hauntReviews[i].rating;
+        }
+        let avgRating = sumRating / hauntReviews.length;
+        for (let i = 0; i < avgRating; i++) {
+            comfortRating += '⭐';
+        }
+    }
+
     return (
         <div className='main-haunt-div'>
             <div className='haunt-title'>
@@ -57,16 +83,31 @@ export default function HauntPage () {
             <div className='haunt-img-div'>
                 <img src={haunt.imgUrl[0]} alt='haunt' className='haunt-img'/>
             </div>
-            <p>{haunt.address}, {haunt.city}, {haunt.state}, {haunt.country}</p>
-            <p>${haunt.price} / Night</p>
-            {isUser && (
-                <>
-                    <button onClick={() => showForm === true ? setShowForm(false) : setShowForm(true)}>Edit</button>
-                    <button onClick={deleteHaunt}>Delete Haunt</button>
-                </>
-            )}
-            {content}
-            <Reviews haunt={haunt}/>
+            <div className='haunt-details-div'>
+                <div className='haunt-details-detail'>
+                    <p>{haunt.address}, {haunt.city}, {haunt.state}, {haunt.country}</p>
+                </div>
+                <div className='haunt-details-detail'>
+                    <p>${haunt.price} / Night</p>
+                </div>
+                <div className='haunt-details-detail'>
+                    <p>Paranormal Activity rating: {paranormalRating}</p>
+                </div>
+                <div className='haunt-details-detail'>
+                    <p>Comfort Rating: {comfortRating}</p>
+                </div>
+                <div className='haunt-details-detail'>
+                    <p>{haunt.description}</p>
+                </div>
+                {isUser && (
+                    <div>
+                        <button onClick={() => showForm === true ? setShowForm(false) : setShowForm(true)}>Edit</button>
+                        <button onClick={deleteHaunt}>Delete Haunt</button>
+                    </div>
+                )}
+                {content}
+            </div>
+            <Reviews haunt={haunt} hauntReviews={hauntReviews}/>
         </div>
     )
 }

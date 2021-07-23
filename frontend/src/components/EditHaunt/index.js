@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateHaunt } from '../../store/haunts';
+import './EditHaunt.css';
 
 export default function EditHaunt ({ haunt }) {
     const [name, setName] = useState(haunt.name);
@@ -79,15 +80,15 @@ export default function EditHaunt ({ haunt }) {
     }
 
     return (
-        <div>
-            <h2>Edit Haunt Component</h2>
+        <div className='edit-haunt-main-div'>
+            <h2>Edit Haunt</h2>
             <form
                 onSubmit={handleSubmit}
             >
                 <ul className='errors'>
                     {errors.map((error) => <li key={error}>{error}</li>)}
                 </ul>
-                <div>
+                <div className='edit-input-div'>
                     <label htmlFor='name'>Name</label>
                     <input
                         type='text'
@@ -96,7 +97,7 @@ export default function EditHaunt ({ haunt }) {
                         onChange={e => setName(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='edit-input-div'>
                     <label htmlFor='address'>Address</label>
                     <input
                         type='text'
@@ -105,7 +106,7 @@ export default function EditHaunt ({ haunt }) {
                         onChange={e => setAddress(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='edit-input-div'>
                     <label htmlFor='city'>City</label>
                     <input
                         type='text'
@@ -114,7 +115,7 @@ export default function EditHaunt ({ haunt }) {
                         onChange={e => setCity(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='edit-input-div'>
                     <label htmlFor='state'>State</label>
                     <input
                         type='text'
@@ -123,7 +124,7 @@ export default function EditHaunt ({ haunt }) {
                         onChange={e => setState(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='edit-input-div'>
                     <label htmlFor='country'>Country</label>
                     <input
                         type='text'
@@ -132,7 +133,7 @@ export default function EditHaunt ({ haunt }) {
                         onChange={e => setCountry(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='edit-input-div'>
                     <label htmlFor='lat'>Lattitude</label>
                     <input
                         type='decimal'
@@ -141,7 +142,7 @@ export default function EditHaunt ({ haunt }) {
                         onChange={e => setLat(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='edit-input-div'>
                     <label htmlFor='lng'>Longitude</label>
                     <input
                         type='decimal'
@@ -150,7 +151,7 @@ export default function EditHaunt ({ haunt }) {
                         onChange={e => setLng(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='edit-input-div'>
                     <label htmlFor='price'>Price per Night</label>
                     <input
                         type='decimal'
@@ -159,14 +160,14 @@ export default function EditHaunt ({ haunt }) {
                         onChange={e => setPrice(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='edit-input-div'>
                     <label htmlFor='description'>Description</label>
                     <textarea
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='edit-input-div'>
                     <label htmlFor='activity'>Paranormal Activity level</label>
                     <input
                         type='number'

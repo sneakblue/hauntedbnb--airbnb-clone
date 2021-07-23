@@ -1,0 +1,10 @@
+.reviews-main-div {
+    display: flex;
+    box-shadow: 0px 0px 10px white;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    margin-top: 10px;
+}

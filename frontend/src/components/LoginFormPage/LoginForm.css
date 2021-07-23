@@ -20,6 +20,8 @@
     width: 100%;
     height: 100vh;
     background-color: darkslategrey;
+    background-image: url('../../images/Smoke3.jpg');
+    background-size: cover;
 }
 
 .login-btns {

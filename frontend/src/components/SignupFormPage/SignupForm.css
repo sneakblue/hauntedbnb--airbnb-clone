@@ -8,6 +8,8 @@
     height: 100vh;
     background-color: darkslategrey;
     color: black;
+    background-image: url('../../images/Smoke3.jpg');
+    background-size: cover;
 }
 
 .signup-form {

@@ -1,0 +1,23 @@
+.landing-main-div {
+    background-color: darkslategray;
+    background-image: url('../../images/house.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.landing-haunts-btn {
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+    width: 200px;
+}
+
+.landing-title {
+    color: whitesmoke;
+    margin-bottom: 20px;
+}

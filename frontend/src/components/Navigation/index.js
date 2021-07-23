@@ -30,7 +30,7 @@ export default function Navigation ({ isLoaded }) {
                 <h4>Logo</h4>
             </div>
             <nav className='navbar'>
-                <NavLink exact to='/' className='nav-btn'>Home</NavLink>
+                <NavLink exact to='/haunts' className='nav-btn'>Home</NavLink>
                 {isLoaded && sessionLinks}
             </nav>
         </div>

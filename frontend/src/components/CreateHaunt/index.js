@@ -87,7 +87,7 @@ export default function CreateHaunt () {
                 images
             }
             dispatch(newHaunt(createdHaunt));
-            history.push('/');
+            history.push('/haunts');
         }
     }
 

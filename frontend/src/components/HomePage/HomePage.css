@@ -2,13 +2,20 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: darkslategrey;
+    /* background-color: darkslategrey; */
     min-height: 100vh;
 }
 
 .title-div {
     display: flex;
     justify-content: center;
-    background-color: darkslategrey;
+    /* background-color: darkslategrey; */
     color: white;
+}
+
+.main-home-div {
+    background-image: url('../../images/Smoke2.jpg');
+    background-color: darkslategrey;
+    background-size: cover;
+
 }
