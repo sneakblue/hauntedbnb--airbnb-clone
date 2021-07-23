@@ -18,7 +18,7 @@ router.get('/:id', asyncHandler( async (req, res) => {
 }))
 
 router.post('/create', asyncHandler( async (req, res) => {
-    const { userId, address, city, state, country, lat, lng, name, price, activity } = req.body;
+    const { userId, address, city, state, country, lat, lng, name, price, description, activity } = req.body;
     const haunt = await Haunt.create({
         userId,
         address,
@@ -29,6 +29,7 @@ router.post('/create', asyncHandler( async (req, res) => {
         lng,
         name,
         price,
+        description,
         activity
     });
     return res.json({ haunt });

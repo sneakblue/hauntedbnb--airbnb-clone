@@ -17,6 +17,7 @@ export default function CreateHaunt () {
     const [lng, setLng] = useState('');
     const [price, setPrice] = useState('');
     const [activity, setActivity] = useState('');
+    const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
     const [images, setImages] = useState([]);
     const [errors, setErrors] = useState([]);
@@ -53,11 +54,14 @@ export default function CreateHaunt () {
         if (price <= 0) {
             errors.push('Must provide a price higher than zero');
         }
+        if (description.length <= 0) {
+            errors.push('Must provide a description')
+        }
         if (activity <= 0) {
             errors.push('Must provide a Paranormal Activity level');
         }
         setErrors(errors);
-    }, [name, address, city, state, country, lat, lng, price, activity])
+    }, [name, address, city, state, country, lat, lng, price, description, activity])
 
     const handleImage = () => {
         images.push(image);
@@ -78,6 +82,7 @@ export default function CreateHaunt () {
                 lat,
                 lng,
                 price,
+                description,
                 activity,
                 images
             }
@@ -169,13 +174,32 @@ export default function CreateHaunt () {
                     />
                 </div>
                 <div className='input-div'>
+                    <label htmlFor='description'>Description</label>
+                    <textarea
+                        name='description'
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                    />
+                </div>
+                <div className='input-div-activity'>
                     <label htmlFor='activity'>Paranormal Activity level</label>
-                    <input
+                    <select
                         type='number'
                         name='activity'
                         value={activity}
                         onChange={e => setActivity(e.target.value)}
-                    />
+                    >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
                 </div>
                 <div className='image-input'>
                     <label htmlFor='image'>Images</label>

@@ -49,6 +49,7 @@ export default function hauntsReducer (state = initialState, action) {
                 lng: newHaunt.haunt.lng,
                 name: newHaunt.haunt.name,
                 price: newHaunt.haunt.price,
+                description: newHaunt.haunt.description,
                 activity: newHaunt.haunt.activity,
                 imgUrl: newImages,
             };
@@ -123,10 +124,10 @@ export const getHaunts = () => async dispatch => {
 // }
 
 export const newHaunt = (haunt) => async dispatch => {
-    const { userId, address, city, state, country, lat, lng, name, price, activity, images } = haunt;
+    const { userId, address, city, state, country, lat, lng, name, price, activity, description, images } = haunt;
     const hauntResponse = await csrfFetch('/api/haunts/create', {
         method: 'POST',
-        body: JSON.stringify({ userId, address, city, state, country, lat, lng, name, price, activity })
+        body: JSON.stringify({ userId, address, city, state, country, lat, lng, name, price, description, activity })
     });
     if(hauntResponse.ok) {
         const createdHaunt = await hauntResponse.json();
@@ -147,10 +148,10 @@ export const newHaunt = (haunt) => async dispatch => {
 };
 
 export const updateHaunt = (haunt) => async dispatch => {
-    const { userId, address, city, state, country, lat, lng, name, price, activity, id } = haunt;
+    const { userId, address, city, state, country, lat, lng, name, price, description, activity, id } = haunt;
     const response = await csrfFetch(`/api/haunts/${id}`, {
         method: 'PUT',
-        body: JSON.stringify({ userId, address, city, state, country, lat, lng, name, price, activity })
+        body: JSON.stringify({ userId, address, city, state, country, lat, lng, name, price, description, activity })
     });
 
     if (response.ok) {

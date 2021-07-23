@@ -11,6 +11,7 @@ export default function EditHaunt ({ haunt }) {
     const [lat, setLat] = useState(haunt.lat);
     const [lng, setLng] = useState(haunt.lng);
     const [price, setPrice] = useState(haunt.price);
+    const [description, setDescription] = useState(haunt.description);
     const [activity, setActivity] = useState(haunt.activity);
     // const [image, setImage] = useState(haunt.imgUrl[0]);
     const [errors, setErrors] = useState([]);
@@ -45,11 +46,14 @@ export default function EditHaunt ({ haunt }) {
         if (price <= 0) {
             errors.push('Must provide a price higher than zero');
         }
+        if (description.length <= 0) {
+            errors.push('Must provide a description');
+        }
         if (activity <= 0) {
             errors.push('Must provide a Paranormal Activity level');
         }
         setErrors(errors);
-    }, [name, address, city, state, country, lat, lng, price, activity])
+    }, [name, address, city, state, country, lat, lng, price, description, activity])
 
 
     const handleSubmit = (e) => {
@@ -65,6 +69,7 @@ export default function EditHaunt ({ haunt }) {
                 lat,
                 lng,
                 price,
+                description,
                 activity,
                 id: haunt.id
             }
@@ -152,6 +157,13 @@ export default function EditHaunt ({ haunt }) {
                         name='price'
                         value={price}
                         onChange={e => setPrice(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='description'>Description</label>
+                    <textarea
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
                     />
                 </div>
                 <div>

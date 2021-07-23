@@ -13,6 +13,7 @@ module.exports = {
             lng: -23.16960,
             name: 'Red and White House',
             price: 169.99,
+            description: 'This is a quaint little house in the middle of Icelands Wesfjords Region. You will enjoy the views as well as your ghostly roomates!',
             activity: 6
         },
         {
@@ -25,6 +26,7 @@ module.exports = {
             lng: -118.32290,
             name: 'The Murder House',
             price: 229.99,
+            description: 'This is a house that NOBODY should stay at, but if your brave enough, maybe you can survive the night...',
             activity: 10
         },
         {
@@ -37,6 +39,7 @@ module.exports = {
             lng: -118.00698,
             name: 'The Mills View House',
             price: 219.99,
+            description: 'This historic house has been apart of the most haunted in California. Come see its beautiful grounds along with the abundance of ghosts living here!',
             activity: 6
         },
     ], {});

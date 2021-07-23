@@ -47,7 +47,7 @@ module.exports = {
       },
       description: {
           allowNull: false,
-          type: Sequelize.Text
+          type: Sequelize.TEXT
       },
       activity: {
           allowNull: false,
