@@ -43,8 +43,8 @@ export default function HauntPage () {
         }
     }
 
-    const deleteHaunt = () => {
-        dispatch(removeHaunt(id));
+    const deleteHaunt = async () => {
+        await dispatch(removeHaunt(id));
         history.push('/haunts');
     }
 
