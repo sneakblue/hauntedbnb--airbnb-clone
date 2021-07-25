@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { newHaunt } from "../../store/haunts";
 import './CreateHaunt.css';
 
@@ -26,7 +26,7 @@ export default function CreateHaunt () {
         history.push('/login');
     }
 
-    useEffect(() => {
+    const checkErrors = () => {
         const errors = [];
         if (name.length < 3) {
             errors.push('Name must be 3 or more characters');
@@ -61,17 +61,21 @@ export default function CreateHaunt () {
             errors.push('Must provide a Paranormal Activity level');
         }
         setErrors(errors);
-    }, [name, address, city, state, country, lat, lng, price, description, activity])
+        return (errors);
+    }
 
     const handleImage = () => {
-        images.push(image);
-        setImages(images);
-        setImage('');
+        if (image.length > 0) {
+            images.push(image);
+            setImages(images);
+            setImage('');
+        }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!errors.length > 0) {
+        let submitErrors = checkErrors();
+        if (submitErrors.length === 0) {
             const createdHaunt = {
                 userId: sessionUser.id,
                 name,
