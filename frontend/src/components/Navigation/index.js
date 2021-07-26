@@ -27,7 +27,9 @@ export default function Navigation ({ isLoaded }) {
     return (
         <div className='navbar-container'>
             <div className='logo'>
-                <h4>Logo</h4>
+            </div>
+            <div className='site-title'>
+                <h4>Haunt Bnb</h4>
             </div>
             <nav className='navbar'>
                 <NavLink exact to='/haunts' className='nav-btn'>Home</NavLink>

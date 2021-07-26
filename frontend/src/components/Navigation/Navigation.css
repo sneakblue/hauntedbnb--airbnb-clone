@@ -95,3 +95,17 @@
 .navbar-container {
     display: flex;
 }
+
+.logo {
+    height: 50px;
+    width: 60px;
+    background-image: url('../../images/HauntBNB.png');
+    background-size: cover;
+}
+
+.site-title {
+    background-color: whitesmoke;
+    display: flex;
+    width: 100px;
+    align-items: center;
+}
