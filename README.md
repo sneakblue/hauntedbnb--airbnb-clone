@@ -59,3 +59,10 @@
 
 - run npm start using:
     `npm start`
+
+``` Javascript
+    const newfunc = () => {
+        return 'Test Function'
+    }
+
+```
