@@ -18,6 +18,10 @@ export default function HauntPage () {
     const reviews = useSelector(state => Object.values(state.reviews));
 
     useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    useEffect(() => {
 
     },[reviews])
 
