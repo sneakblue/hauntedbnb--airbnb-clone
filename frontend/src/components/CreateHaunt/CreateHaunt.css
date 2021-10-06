@@ -87,7 +87,7 @@
 }
 
 .input-textarea {
-    width: 50%;
+    width: 100%;
     height: 50px;
     overflow: auto;
     border-radius: 5px;
@@ -95,4 +95,10 @@
 
 .create-haunt-input {
     border-radius: 5px;
+}
+
+.inputs-div {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
 }

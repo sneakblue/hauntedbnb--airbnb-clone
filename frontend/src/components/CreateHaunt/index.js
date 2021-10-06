@@ -16,7 +16,7 @@ export default function CreateHaunt () {
     const [lat, setLat] = useState('');
     const [lng, setLng] = useState('');
     const [price, setPrice] = useState('');
-    const [activity, setActivity] = useState('');
+    const [activity, setActivity] = useState(1);
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
     const [images, setImages] = useState([]);
@@ -105,7 +105,7 @@ export default function CreateHaunt () {
                 <ul className='errors'>
                     {errors.map((error) => <li key={error}>{error}</li>)}
                 </ul>
-                <div className='input-div'>
+                <div className='inputs-div'>
                     <label htmlFor='name'>Name</label>
                     <input
                         className='create-haunt-input'
@@ -114,8 +114,6 @@ export default function CreateHaunt () {
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
-                </div>
-                <div className='input-div'>
                     <label htmlFor='address'>Address</label>
                     <input
                         className='create-haunt-input'
@@ -124,8 +122,6 @@ export default function CreateHaunt () {
                         value={address}
                         onChange={e => setAddress(e.target.value)}
                     />
-                </div>
-                <div className='input-div'>
                     <label htmlFor='city'>City</label>
                     <input
                         className='create-haunt-input'
@@ -134,8 +130,6 @@ export default function CreateHaunt () {
                         value={city}
                         onChange={e => setCity(e.target.value)}
                     />
-                </div>
-                <div className='input-div'>
                     <label htmlFor='state'>State</label>
                     <input
                         className='create-haunt-input'
@@ -144,8 +138,6 @@ export default function CreateHaunt () {
                         value={state}
                         onChange={e => setState(e.target.value)}
                     />
-                </div>
-                <div className='input-div'>
                     <label htmlFor='country'>Country</label>
                     <input
                         className='create-haunt-input'
@@ -154,8 +146,6 @@ export default function CreateHaunt () {
                         value={country}
                         onChange={e => setCountry(e.target.value)}
                     />
-                </div>
-                <div className='input-div'>
                     <label htmlFor='lat'>Lattitude</label>
                     <input
                         className='create-haunt-input'
@@ -164,8 +154,6 @@ export default function CreateHaunt () {
                         value={lat}
                         onChange={e => setLat(e.target.value)}
                     />
-                </div>
-                <div className='input-div'>
                     <label htmlFor='lng'>Longitude</label>
                     <input
                         className='create-haunt-input'
@@ -174,8 +162,6 @@ export default function CreateHaunt () {
                         value={lng}
                         onChange={e => setLng(e.target.value)}
                     />
-                </div>
-                <div className='input-div'>
                     <label htmlFor='price'>Price per Night</label>
                     <input
                         className='create-haunt-input'
@@ -184,8 +170,6 @@ export default function CreateHaunt () {
                         value={price}
                         onChange={e => setPrice(e.target.value)}
                     />
-                </div>
-                <div className='input-div'>
                     <label htmlFor='description'>Description</label>
                     <textarea
                         className='input-textarea'
@@ -193,8 +177,6 @@ export default function CreateHaunt () {
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
-                </div>
-                <div className='input-div-activity'>
                     <label htmlFor='activity'>Paranormal Activity level</label>
                     <select
                         type='number'
@@ -213,18 +195,18 @@ export default function CreateHaunt () {
                         <option>9</option>
                         <option>10</option>
                     </select>
-                </div>
-                <div className='image-input'>
                     <label htmlFor='image'>Images</label>
-                    <ul className='image-input-list'>
-                        {images.map((image, i) => {
-                            return (
-                                <>
-                                    <li key={i + image}>{image}</li>
-                                </>
-                            )
-                        })}
-                    </ul>
+                    {images.length > 0 && (
+                        <ul className='image-input-list'>
+                            {images.map((image, i) => {
+                                return (
+                                    <>
+                                        <li key={i + image}>{image}</li>
+                                    </>
+                                )
+                            })}
+                        </ul>
+                    )}
                     <input
                         type='text'
                         name='image'

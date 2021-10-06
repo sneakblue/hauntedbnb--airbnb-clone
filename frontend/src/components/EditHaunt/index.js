@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { updateHaunt } from '../../store/haunts';
 import './EditHaunt.css';
 
-export default function EditHaunt ({ haunt }) {
+export default function EditHaunt ({ haunt, setShowForm }) {
     const [name, setName] = useState(haunt.name);
     const [address, setAddress] = useState(haunt.address);
     const [city, setCity] = useState(haunt.city);
@@ -76,6 +76,7 @@ export default function EditHaunt ({ haunt }) {
             }
             dispatch(updateHaunt(updatedHaunt));
             setErrors([]);
+            setShowForm(false);
         }
     }
 

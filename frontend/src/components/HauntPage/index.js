@@ -18,6 +18,10 @@ export default function HauntPage () {
     const reviews = useSelector(state => Object.values(state.reviews));
 
     useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    useEffect(() => {
 
     },[reviews])
 
@@ -52,7 +56,7 @@ export default function HauntPage () {
 
     if (showForm) {
         content = (
-            <EditHaunt haunt={haunt} />
+            <EditHaunt haunt={haunt} setShowForm={setShowForm}/>
         )
     } else {
         content =(

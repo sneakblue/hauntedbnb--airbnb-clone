@@ -44,7 +44,7 @@ export default function CreateReview ({haunt, currUser, hauntReviews}) {
                 onSubmit={handleSubmit}
             >
                 <div className='submit-review-write-div'>
-                    <label htmlFor='review'>Write a review:</label>
+                    <label htmlFor='review' className='submit-review-write-label'>Write a review:</label>
                     <textarea
                         name='review'
                         className='submit-review-textarea-input'
