@@ -56,7 +56,7 @@ export default function HauntPage () {
 
     if (showForm) {
         content = (
-            <EditHaunt haunt={haunt} />
+            <EditHaunt haunt={haunt} setShowForm={setShowForm}/>
         )
     } else {
         content =(
