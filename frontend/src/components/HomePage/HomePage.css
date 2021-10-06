@@ -14,6 +14,7 @@
 }
 
 .main-home-div {
+    padding-top: 20px;
     background-image: url('../../images/Smoke2.jpg');
     background-color: darkslategrey;
     background-size: cover;
