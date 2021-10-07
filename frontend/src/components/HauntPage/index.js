@@ -114,7 +114,7 @@ export default function HauntPage () {
                     </div>
                 )}
                 {content}
-                <Bookings />
+                <Bookings hauntId={id}/>
             </div>
             <Reviews haunt={haunt} hauntReviews={hauntReviews}/>
         </div>
