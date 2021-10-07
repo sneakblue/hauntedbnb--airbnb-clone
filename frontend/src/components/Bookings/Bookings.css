@@ -7,3 +7,15 @@
     align-items: center;
     width: 100%;
 }
+
+.currBooking-div {
+    display: flex;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.booking-edit-delete-btns {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -6,7 +6,8 @@ const { Booking } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler( async (req, res) => {
-    return res.json({ message: 'Booking api route reached'})
+    const bookings = await Booking.findAll();
+    return res.json({ bookings });
 }));
 
 router.post('/', asyncHandler( async (req, res) => {
@@ -18,6 +19,28 @@ router.post('/', asyncHandler( async (req, res) => {
         endDate
     });
     return res.json({ booking });
+}));
+
+router.put('/:id', asyncHandler( async (req, res) => {
+    const { id } = req.params;
+    await Booking.update(
+        req.body,
+        {
+            where: { id },
+            returning: true,
+            plain: true,
+        }
+    );
+    const updatedBooking = await Booking.findByPk(id);
+    return res.json({ updatedBooking });
+}));
+
+router.delete('/:id', asyncHandler( async (req, res) => {
+    const { id } = req.params;
+    await Booking.destroy({
+        where: { id }
+    });
+    return res.json({ message: 'Haunt deleted' });
 }));
 
 module.exports = router;

@@ -11,7 +11,7 @@ export default function bookingsReducer (state = initialState, action) {
     switch (action.type) {
         case LOAD_BOOKINGS: {
             const newState = {...state};
-            action.bookings.forEach(booking => {
+            action.bookings.bookings.forEach(booking => {
                 newState[booking.id] = booking;
             });
             return newState;
@@ -21,15 +21,35 @@ export default function bookingsReducer (state = initialState, action) {
             newState[action.booking.booking.id] = action.booking.booking;
             return newState;
         }
+        case DELETE: {
+            const newState = {...state};
+            delete newState[action.id]
+            return newState;
+        }
         default: {
             return state;
         }
     }
 }
 
+const loadBookings = (bookings) => ({
+    type: LOAD_BOOKINGS,
+    bookings
+})
+
 const createBooking = (booking) => ({
     type: CREATE_BOOKING,
     booking
+});
+
+const update = haunt => ({
+    type: UPDATE,
+    haunt
+});
+
+const deleteBooking = id => ({
+    type: DELETE,
+    id
 });
 
 export const newBooking = (booking) => async dispatch => {
@@ -42,5 +62,38 @@ export const newBooking = (booking) => async dispatch => {
         const createdBooking = await bookingResponse.json();
         dispatch(createBooking(createdBooking));
         return createdBooking;
+    };
+};
+
+export const findBookings = () => async dispatch => {
+    const bookingsRes = await csrfFetch('/api/bookings');
+    if (bookingsRes.ok) {
+        const bookings = await bookingsRes.json();
+        dispatch(loadBookings(bookings));
+        return bookings;
+    };
+};
+
+export const updateBooking = (booking) => async dispatch => {
+    const { id, hauntId, userId, startDate, endDate } = booking;
+    const response = await csrfFetch(`/api/bookings/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ hauntId, userId, startDate, endDate })
+    });
+
+    if (response.ok) {
+        const updatedBooking = await response.json();
+        dispatch(update(updatedBooking));
+        return updatedBooking;
+    };
+};
+
+export const removeBooking = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/${id}`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        dispatch(deleteBooking(id));
     };
 };
