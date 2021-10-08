@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getHaunts, removeHaunt } from "../../store/haunts";
 import { getReviews } from "../../store/reviews";
 import EditHaunt from "../EditHaunt";
+import Bookings from '../Bookings';
 import Reviews from "../Reviews";
 import './HauntPage.css';
 
@@ -113,6 +114,7 @@ export default function HauntPage () {
                     </div>
                 )}
                 {content}
+                <Bookings hauntId={id}/>
             </div>
             <Reviews haunt={haunt} hauntReviews={hauntReviews}/>
         </div>
