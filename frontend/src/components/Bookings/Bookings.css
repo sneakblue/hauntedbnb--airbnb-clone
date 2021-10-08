@@ -28,6 +28,11 @@
     margin-right: 5px;
 }
 
+.date-div {
+    display: flex;
+    flex-direction: column;
+}
+
 .bookings-btn {
     border: 1px solid black;
     background-color: whitesmoke;

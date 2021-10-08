@@ -1,7 +1,7 @@
 import DatePicker from 'react-datepicker';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { newBooking, findBookings, removeBooking } from '../../store/bookings';
+import { newBooking, findBookings, removeBooking, updateBooking } from '../../store/bookings';
 
 import "react-datepicker/dist/react-datepicker.css";
 import './Bookings.css';
@@ -67,6 +67,9 @@ export default function Bookings ({ hauntId }) {
     const [ endDate, setEndDate ] = useState( new Date());
     const [ hasBooking, setHasBooking ] = useState( false );
     const [ currBooking, setCurrBooking ] = useState({});
+    const [ editStart, setEditStart ] = useState(new Date(currBooking.startDate));
+    const [ editEnd, setEditEnd ] = useState( new Date(currBooking.endDate));
+    const [ showEdit, setShowEdit ] = useState(false);
     const dispatch = useDispatch();
     const currUser = useSelector(state => state.session.user);
     const bookings = useSelector(state => Object.values(state.bookings));
@@ -99,7 +102,15 @@ export default function Bookings ({ hauntId }) {
     }
 
     const handleEdit = async () => {
+        const edittedBooking = {
+            id: currBooking.id,
+            hauntId: currBooking.hauntId,
+            userId: currBooking.userId,
+            startDate: currBooking.startDate,
+            endDate: currBooking.endDate
+        }
 
+        setShowEdit(false);
     }
 
     const handleDelete = async () => {
@@ -109,27 +120,68 @@ export default function Bookings ({ hauntId }) {
 
     let content = null;
 
+    let bookingContent = null;
+
+
     if (hasBooking) {
         const currStart = currBooking.startDate.slice(0, 10);
         let formattedStart = dateFormatter(currStart)
-        console.log(formattedStart)
         const currEnd = currBooking.endDate.slice(0, 10);
         let formattedEnd = dateFormatter(currEnd);
+
+        if (showEdit) {
+            // if (startDate !== currBooking.startDate) setStartDate(new Date(currBooking.startDate));
+            // if (endDate !== currBooking.endDate) setEndDate(new Date(currBooking.endDate));
+
+            bookingContent = (
+                <>
+                    <h2>Change Your Stay</h2>
+                    <div className='date-div'>
+                        <h5>Start Date</h5>
+                        <DatePicker
+                            selected={editStart}
+                            selectsStart
+                            onChange={(date) => setEditStart(date)}
+                            minDate={new Date()}
+                            startDate={editStart}
+                            endDate={editEnd}
+                        />
+                        <h5>End Date</h5>
+                        <DatePicker
+                            selected={editEnd}
+                            selectsEnd
+                            onChange={(date) => setEditEnd(date)}
+                            startDate={editStart}
+                            endDate={editEnd}
+                            minDate={editStart}
+                        />
+                        <button className='bookings-btn' onClick={handleEdit}>Update Booking</button>
+                    </div>
+                </>
+            )
+        } else {
+            bookingContent = (
+                <>
+                    <h2>Your Booking</h2>
+                    <div className='currBooking-div'>
+                        <h5 className='booking-start-h5'>Check-in:</h5>
+                        <h5>{formattedStart}</h5>
+                    </div>
+                    <div className='currBooking-div'>
+                        <h5 className='booking-start-h5'>Check-out:</h5>
+                        <h5>{formattedEnd}</h5>
+                    </div>
+                    <div className='booking-edit-delete-btns'>
+                        <button className='bookings-btn' onClick={() => showEdit ? setShowEdit(false) : setShowEdit(true)}>Edit Booking</button>
+                        <button className='bookings-btn' onClick={handleDelete}>Delete Booking</button>
+                    </div>
+                </>
+            )
+        }
+
         content = (
             <>
-                <h3>Your Booking</h3>
-                <div className='currBooking-div'>
-                    <h5 className='booking-start-h5'>From:</h5>
-                    <h5>{formattedStart}</h5>
-                </div>
-                <div className='currBooking-div'>
-                    <h5 className='booking-start-h5'>To:</h5>
-                    <h5>{formattedEnd}</h5>
-                </div>
-                <div className='booking-edit-delete-btns'>
-                    <button className='bookings-btn' onClick={handleEdit}>Edit Booking</button>
-                    <button className='bookings-btn' onClick={handleDelete}>Delete Booking</button>
-                </div>
+                {bookingContent}
             </>
         )
     } else {
@@ -142,6 +194,7 @@ export default function Bookings ({ hauntId }) {
                         selected={startDate}
                         selectsStart
                         onChange={(date) => setStartDate(date)}
+                        minDate={new Date()}
                         startDate={startDate}
                         endDate={endDate}
                     />
