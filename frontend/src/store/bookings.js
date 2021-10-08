@@ -21,6 +21,11 @@ export default function bookingsReducer (state = initialState, action) {
             newState[action.booking.booking.id] = action.booking.booking;
             return newState;
         }
+        case UPDATE: {
+            const newState = {...state};
+            newState[action.booking.updatedBooking.id] = action.booking.updatedBooking;
+            return newState;
+        }
         case DELETE: {
             const newState = {...state};
             delete newState[action.id]
@@ -42,9 +47,9 @@ const createBooking = (booking) => ({
     booking
 });
 
-const update = haunt => ({
+const update = booking => ({
     type: UPDATE,
-    haunt
+    booking
 });
 
 const deleteBooking = id => ({

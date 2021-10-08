@@ -66,9 +66,9 @@ export default function Bookings ({ hauntId }) {
     const [ startDate, setStartDate ] = useState(new Date());
     const [ endDate, setEndDate ] = useState( new Date());
     const [ hasBooking, setHasBooking ] = useState( false );
-    const [ currBooking, setCurrBooking ] = useState({});
-    const [ editStart, setEditStart ] = useState(new Date(currBooking.startDate));
-    const [ editEnd, setEditEnd ] = useState( new Date(currBooking.endDate));
+    const [ currBooking, setCurrBooking ] = useState('');
+    const [ editStart, setEditStart ] = useState('');
+    const [ editEnd, setEditEnd ] = useState('');
     const [ showEdit, setShowEdit ] = useState(false);
     const dispatch = useDispatch();
     const currUser = useSelector(state => state.session.user);
@@ -81,6 +81,11 @@ export default function Bookings ({ hauntId }) {
     useEffect(() => {
         dispatch(findBookings());
     }, [dispatch])
+
+    useEffect(() => {
+        setEditStart(Date.parse(currBooking.startDate));
+        setEditEnd(Date.parse(currBooking.endDate));
+    }, [showEdit, currBooking])
 
     useEffect(() => {
         bookings.forEach(booking => {
@@ -106,10 +111,11 @@ export default function Bookings ({ hauntId }) {
             id: currBooking.id,
             hauntId: currBooking.hauntId,
             userId: currBooking.userId,
-            startDate: currBooking.startDate,
-            endDate: currBooking.endDate
+            startDate: editStart,
+            endDate: editEnd
         }
 
+        dispatch(updateBooking(edittedBooking));
         setShowEdit(false);
     }
 
@@ -130,9 +136,6 @@ export default function Bookings ({ hauntId }) {
         let formattedEnd = dateFormatter(currEnd);
 
         if (showEdit) {
-            // if (startDate !== currBooking.startDate) setStartDate(new Date(currBooking.startDate));
-            // if (endDate !== currBooking.endDate) setEndDate(new Date(currBooking.endDate));
-
             bookingContent = (
                 <>
                     <h2>Change Your Stay</h2>
