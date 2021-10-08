@@ -1,11 +1,15 @@
 .bookings-main--div {
-    background-color: whitesmoke;
+    background-color: blanchedalmond;
     position: relative;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
-    width: 100%;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .currBooking-div {
@@ -18,4 +22,32 @@
     display: flex;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.booking-start-h5 {
+    margin-right: 5px;
+}
+
+.bookings-btn {
+    border: 1px solid black;
+    background-color: whitesmoke;
+    padding: 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px;
+}
+
+.bookings-btn:hover {
+    background-color: lightgray;
+    box-shadow: 2px 2px 5px black;
+    transition: background-color 0.5s;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.bookings-btn:active {
+    box-shadow: -2px -2px 1px black;
 }

@@ -17,21 +17,49 @@ const dateFormatter = (date) => {
             continue;
         }
         year += newDate.shift();
-    }
+    };
     for (let i = 0; i < 3; i++) {
         if (i === 2) {
             newDate.shift();
             continue;
         }
         month += newDate.shift();
-    }
+    };
     for (let i = 0; i < 2; i++) {
         day += newDate.shift();
+    };
+    let textMonth = monthFormatter(month);
+    return `${textMonth} ${day}, ${year}`
+}
+
+const monthFormatter = (month) => {
+    if (month === '01') {
+        return 'January'
+    } else if (month === '02') {
+        return 'February'
+    } else if (month === '03') {
+        return 'March'
+    } else if (month === '04') {
+        return 'April'
+    } else if (month === '05') {
+        return 'May'
+    } else if (month === '06') {
+        return 'June'
+    } else if (month === '07') {
+        return 'July'
+    } else if (month === '08') {
+        return 'August'
+    } else if (month === '09') {
+        return 'September'
+    } else if (month === '10') {
+        return 'October'
+    } else if (month === '11') {
+        return 'November'
+    } else if (month === '12') {
+        return 'December'
+    } else {
+        return 'Invalid Month'
     }
-    console.log(year);
-    console.log(month);
-    console.log(day);
-    
 }
 
 export default function Bookings ({ hauntId }) {
@@ -83,23 +111,24 @@ export default function Bookings ({ hauntId }) {
 
     if (hasBooking) {
         const currStart = currBooking.startDate.slice(0, 10);
-        if (typeof currStart === 'string') console.log(currStart)
-        dateFormatter(currStart)
+        let formattedStart = dateFormatter(currStart)
+        console.log(formattedStart)
         const currEnd = currBooking.endDate.slice(0, 10);
+        let formattedEnd = dateFormatter(currEnd);
         content = (
             <>
                 <h3>Your Booking</h3>
                 <div className='currBooking-div'>
-                    <h5>Start</h5>
-                    <h5>{currStart}</h5>
+                    <h5 className='booking-start-h5'>From:</h5>
+                    <h5>{formattedStart}</h5>
                 </div>
                 <div className='currBooking-div'>
-                    <h5>End</h5>
-                    <h5>{currEnd}</h5>
+                    <h5 className='booking-start-h5'>To:</h5>
+                    <h5>{formattedEnd}</h5>
                 </div>
                 <div className='booking-edit-delete-btns'>
-                    <button className='booking-btns' onClick={handleEdit}>Edit Booking</button>
-                    <button className='booking-btns' onClick={handleDelete}>Delete Booking</button>
+                    <button className='bookings-btn' onClick={handleEdit}>Edit Booking</button>
+                    <button className='bookings-btn' onClick={handleDelete}>Delete Booking</button>
                 </div>
             </>
         )
@@ -109,9 +138,22 @@ export default function Bookings ({ hauntId }) {
                 <h2>Book Your Stay</h2>
                 <div className='date-div'>
                     <h5>Start Date</h5>
-                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                    <DatePicker
+                        selected={startDate}
+                        selectsStart
+                        onChange={(date) => setStartDate(date)}
+                        startDate={startDate}
+                        endDate={endDate}
+                    />
                     <h5>End Date</h5>
-                    <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+                    <DatePicker
+                        selected={endDate}
+                        selectsEnd
+                        onChange={(date) => setEndDate(date)}
+                        startDate={startDate}
+                        endDate={endDate}
+                        minDate={startDate}
+                    />
                     <button className='bookings-btn' onClick={handleBooking}>Book</button>
                 </div>
             </>
