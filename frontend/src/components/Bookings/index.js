@@ -145,7 +145,7 @@ export default function Bookings ({ hauntId }) {
 
         let totalDays = (bookingLength / (60*60*24*1000))
 
-        let totalCost = totalDays * Number(haunt.price)
+        let totalCost = (totalDays * Number(haunt.price)).toFixed(2);
         console.log(totalCost)
 
         if (showEdit) {
