@@ -1,5 +1,6 @@
 import DatePicker from 'react-datepicker';
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { newBooking, findBookings, removeBooking, updateBooking } from '../../store/bookings';
 
@@ -70,7 +71,9 @@ export default function Bookings ({ hauntId }) {
     const [ editStart, setEditStart ] = useState('');
     const [ editEnd, setEditEnd ] = useState('');
     const [ showEdit, setShowEdit ] = useState(false);
+    const history = useHistory();
     const dispatch = useDispatch();
+    const haunt = useSelector(state => state.haunts[hauntId]);
     const currUser = useSelector(state => state.session.user);
     const bookings = useSelector(state => Object.values(state.bookings));
 
@@ -94,9 +97,13 @@ export default function Bookings ({ hauntId }) {
                 setCurrBooking(booking);
             }
         })
-    }, [bookings, currUser.id])
+    }, [bookings, currUser?.id])
 
     const handleBooking = async () => {
+        if (!currUser) {
+            history.push('/login')
+            return
+        }
         const newBook = {
             hauntId,
             userId: currUser.id,
@@ -128,12 +135,18 @@ export default function Bookings ({ hauntId }) {
 
     let bookingContent = null;
 
-
     if (hasBooking) {
         const currStart = currBooking.startDate.slice(0, 10);
         let formattedStart = dateFormatter(currStart)
         const currEnd = currBooking.endDate.slice(0, 10);
         let formattedEnd = dateFormatter(currEnd);
+
+        let bookingLength = Date.parse(currBooking.endDate) - Date.parse(currBooking.startDate)
+
+        let totalDays = (bookingLength / (60*60*24*1000))
+
+        let totalCost = totalDays * Number(haunt.price)
+        console.log(totalCost)
 
         if (showEdit) {
             bookingContent = (
@@ -173,6 +186,9 @@ export default function Bookings ({ hauntId }) {
                     <div className='currBooking-div'>
                         <h5 className='booking-start-h5'>Check-out:</h5>
                         <h5>{formattedEnd}</h5>
+                    </div>
+                    <div>
+                        <h5>Total Cost: ${totalCost}</h5>
                     </div>
                     <div className='booking-edit-delete-btns'>
                         <button className='bookings-btn' onClick={() => showEdit ? setShowEdit(false) : setShowEdit(true)}>Edit Booking</button>
