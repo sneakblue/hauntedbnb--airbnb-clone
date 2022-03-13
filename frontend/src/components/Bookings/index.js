@@ -136,6 +136,7 @@ export default function Bookings ({ hauntId }) {
     let bookingContent = null;
 
     if (hasBooking) {
+        // console.log(currBooking.startDate.getDay())
         const currStart = currBooking.startDate.slice(0, 10);
         let formattedStart = dateFormatter(currStart)
         const currEnd = currBooking.endDate.slice(0, 10);
