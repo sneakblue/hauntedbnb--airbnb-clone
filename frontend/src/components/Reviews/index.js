@@ -49,13 +49,18 @@ export default function Reviews ({ haunt, hauntReviews }) {
 
     return (
         <div className='reviews-main-div'>
-            <h2>Haunt Reviews</h2>
+            <h2 className='reviews_title_h2'>Haunt Reviews</h2>
             {(currUser && !hasReview) && (
                 <CreateReview
                     haunt={haunt}
                     currUser={currUser}
                     hauntReviews={hauntReviews}
                 />
+            )}
+            {!currUser && (
+                <div>
+                    <h3>Login to write a review!</h3>
+                </div>
             )}
             <div className='reviews-list-container'>
                 {hauntReviews.map(review => {
