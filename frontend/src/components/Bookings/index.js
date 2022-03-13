@@ -92,7 +92,7 @@ export default function Bookings ({ hauntId }) {
 
     useEffect(() => {
         bookings.forEach(booking => {
-            if (booking.userId === currUser.id) {
+            if (booking.userId === currUser?.id) {
                 setHasBooking(true);
                 setCurrBooking(booking);
             }
