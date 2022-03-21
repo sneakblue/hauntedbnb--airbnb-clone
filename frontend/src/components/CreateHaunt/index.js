@@ -72,7 +72,7 @@ export default function CreateHaunt () {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         let submitErrors = checkErrors();
         if (submitErrors.length === 0) {
@@ -90,8 +90,13 @@ export default function CreateHaunt () {
                 activity,
                 images
             }
-            dispatch(newHaunt(createdHaunt));
-            history.push('/haunts');
+            const res = await dispatch(newHaunt(createdHaunt));
+            console.log(res);
+            if (res) {
+                console.log('inside check')
+                history.push(`/haunts/${res.haunt.id}`);
+                // history.push('/haunts');
+            }
         }
     }
 

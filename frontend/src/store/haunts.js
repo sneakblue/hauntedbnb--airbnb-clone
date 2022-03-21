@@ -121,7 +121,7 @@ export const newHaunt = (haunt) => async dispatch => {
             };
         });
         dispatch(createHaunt(createdHaunt, newImages));
-        return createHaunt;
+        return createdHaunt;
     };
 };
 
