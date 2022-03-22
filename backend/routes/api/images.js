@@ -1,5 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
+const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3');
 const { check } = require('express-validator');
 
 const { Image } = require('../../db/models');
@@ -11,11 +12,12 @@ router.get('/', asyncHandler( async (req, res) => {
     return res.json({ images });
 }));
 
-router.post('/create', asyncHandler( async (req, res) => {
+router.post('/create', singleMulterUpload('image'), asyncHandler( async (req, res) => {
     const { hauntId, url } = req.body;
+    const imageUrl = await singlePublicFileUpload(req.file);
     const image = await Image.create({
         hauntId,
-        url
+        imageUrl
     });
     return res.json({ image });
 }));
