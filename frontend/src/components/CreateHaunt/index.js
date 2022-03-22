@@ -18,7 +18,7 @@ export default function CreateHaunt () {
     const [price, setPrice] = useState('');
     const [activity, setActivity] = useState(1);
     const [description, setDescription] = useState('');
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState(null);
     const [images, setImages] = useState([]);
     const [errors, setErrors] = useState([]);
 
@@ -64,12 +64,20 @@ export default function CreateHaunt () {
         return (errors);
     }
 
-    const handleImage = () => {
-        if (image.length > 0) {
-            images.push(image);
-            setImages(images);
-            setImage('');
-        }
+    const handleImage = (e) => {
+        const file = e.target.files[0];
+        if (file) setImage(file);
+        // if (image.length > 0) {
+        //     images.push(image);
+        //     setImages(images);
+        //     setImage('');
+        // }
+    }
+
+    const handleImages = (e) => {
+        if (image) setImage(null);
+        const files = e.target.files;
+        setImages(files);
     }
 
     const handleSubmit = async (e) => {
@@ -96,6 +104,8 @@ export default function CreateHaunt () {
                 console.log('inside check')
                 history.push(`/haunts/${res.haunt.id}`);
                 // history.push('/haunts');
+            } else {
+                history.push('/');
             }
         }
     }
@@ -201,6 +211,11 @@ export default function CreateHaunt () {
                         <option>10</option>
                     </select>
                     <label htmlFor='image'>Images</label>
+                    <input
+                        type='file'
+                        name='image'
+                        onChange={handleImage}
+                    />
                     {images.length > 0 && (
                         <ul className='image-input-list'>
                             {images.map((image, i) => {
@@ -212,13 +227,13 @@ export default function CreateHaunt () {
                             })}
                         </ul>
                     )}
-                    <input
+                    {/* <input
                         type='text'
                         name='image'
                         value={image}
                         onChange={e => setImage(e.target.value)}
-                    />
-                    <button type='button' className='create-haunt-btn' onClick={handleImage}>Add photo</button>
+                    /> */}
+                    <button type='button' className='create-haunt-btn' onClick={(e) => image ? handleImages(e) : handleImage(e)}>Add photo</button>
                 </div>
                 <button type='submit' className='create-haunt-btn'>Create Haunt</button>
             </form>
