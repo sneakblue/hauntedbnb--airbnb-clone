@@ -29,20 +29,20 @@ export default function hauntsReducer (state = initialState, action) {
             action.images.forEach(image => {
                 newImages.push(image.url);
             })
-
+            console.log(newHaunt);
             newState[newHaunt.haunt.id] = {
-                id: newHaunt.haunt.id,
-                userId: newHaunt.haunt.userId,
-                address: newHaunt.haunt.address,
-                city: newHaunt.haunt.city,
-                state: newHaunt.haunt.state,
-                country: newHaunt.haunt.country,
-                lat: newHaunt.haunt.lat,
-                lng: newHaunt.haunt.lng,
-                name: newHaunt.haunt.name,
-                price: newHaunt.haunt.price,
-                description: newHaunt.haunt.description,
-                activity: newHaunt.haunt.activity,
+                id: newHaunt.id,
+                userId: newHaunt.userId,
+                address: newHaunt.address,
+                city: newHaunt.city,
+                state: newHaunt.state,
+                country: newHaunt.country,
+                lat: newHaunt.lat,
+                lng: newHaunt.lng,
+                name: newHaunt.name,
+                price: newHaunt.price,
+                description: newHaunt.description,
+                activity: newHaunt.activity,
                 imgUrl: newImages,
             };
             return newState;
@@ -102,24 +102,56 @@ export const getHaunts = () => async dispatch => {
 };
 
 export const newHaunt = (haunt) => async dispatch => {
-    const { userId, address, city, state, country, lat, lng, name, price, activity, description, images } = haunt;
+    const { userId, address, city, state, country, lat, lng, name, price, activity, description, images, image } = haunt;
     const hauntResponse = await csrfFetch('/api/haunts/create', {
         method: 'POST',
         body: JSON.stringify({ userId, address, city, state, country, lat, lng, name, price, description, activity })
     });
     if(hauntResponse.ok) {
         const createdHaunt = await hauntResponse.json();
-        let newImages = [];
-        images.forEach( async image => {
-            const response = await csrfFetch('/api/images/create', {
+        const formData = new FormData();
+
+        if (images && images.length !== 0) {
+            for (let i = 0; i < images.length; i++) {
+                formData.append("images", images[i]);
+            }
+        }
+
+        if (image) formData.append("image", image);
+
+        let res;
+        if (images) {
+            res = await csrfFetch('/api/images/create-mult', {
                 method: 'POST',
-                body: JSON.stringify({ hauntId: createdHaunt.haunt.id, url: image })
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                body: formData,
+            })
+        } else {
+            res = await csrfFetch('/api/images/create-single', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                body: formData,
             });
-            if (response.ok) {
-                const createdImage = await response.json();
-                newImages.push(createdImage.image)
-            };
-        });
+        }
+
+        const newImages = await res.json();
+
+        // let newImages = [];
+        // images.forEach( async image => {
+
+        //     const response = await csrfFetch('/api/images/create', {
+        //         method: 'POST',
+        //         body: JSON.stringify({ hauntId: createdHaunt.haunt.id, url: image })
+        //     });
+        //     if (response.ok) {
+        //         const createdImage = await response.json();
+        //         newImages.push(createdImage.imageUrl)
+        //     };
+        // });
         dispatch(createHaunt(createdHaunt, newImages));
         return createdHaunt;
     };
