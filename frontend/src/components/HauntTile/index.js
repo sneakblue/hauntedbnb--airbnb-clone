@@ -7,7 +7,6 @@ import defaultImg from '../../images/house.jpg';
 
 export default function HauntTile ({ haunt }) {
     const reviews = useSelector((state) => Object.values(state.reviews));
-    // const defaultImg = './images/house.jpg';
     const [ imgSrc, setImgSrc ] = useState(haunt.imgUrl.length > 0 ? haunt.imgUrl[0] : defaultImg);
 
     let comfortRating = '';

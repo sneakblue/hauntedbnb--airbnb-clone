@@ -6,6 +6,7 @@ import { getReviews } from "../../store/reviews";
 import EditHaunt from "../EditHaunt";
 import Bookings from '../Bookings';
 import Reviews from "../Reviews";
+import defaultImg from '../../images/house.jpg';
 import './HauntPage.css';
 
 export default function HauntPage () {
@@ -15,16 +16,23 @@ export default function HauntPage () {
     const [isUser, setIsUser] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const haunt = useSelector(state => state.haunts[id]);
+    const [image, setImage] = useState(defaultImg);
     const currUser = useSelector(state => state.session.user);
     const reviews = useSelector(state => Object.values(state.reviews));
-
+    
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 
     useEffect(() => {
 
-    },[reviews])
+    },[reviews]);
+
+    useEffect(() => {
+        if (haunt?.imgUrl.length > 0) {
+            setImage(haunt.imgUrl[0]);
+        }
+    }, [haunt])
 
     useEffect(() => {
         dispatch(getHaunts());
@@ -83,13 +91,17 @@ export default function HauntPage () {
         }
     }
 
+    const onError = () => {
+        setImage(defaultImg);
+    }
+
     return (
         <div className='main-haunt-div'>
             <div className='haunt-title'>
                 <h1>{haunt.name}</h1>
             </div>
             <div className='haunt-img-div'>
-                <img src={haunt.imgUrl[0]} alt='haunt' className='haunt-img'/>
+                <img src={image} alt='haunt' onError={onError} className='haunt-img'/>
             </div>
             <div className='haunt-details-div'>
                 <div className='haunt-details-detail'>
