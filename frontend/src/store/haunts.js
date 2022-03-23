@@ -111,7 +111,7 @@ export const newHaunt = (haunt) => async dispatch => {
         const createdHaunt = await hauntResponse.json();
         const formData = new FormData();
 
-        if (images && images.length !== 0) {
+        if (images && images.length !== 1) {
             for (let i = 0; i < images.length; i++) {
                 formData.append("images", images[i]);
             }
@@ -120,7 +120,7 @@ export const newHaunt = (haunt) => async dispatch => {
         if (image) formData.append("image", image);
 
         let res;
-        if (images.length !== 0) {
+        if (images.length !== 1) {
             res = await csrfFetch('/api/images/create-mult', {
                 method: 'POST',
                 headers: {

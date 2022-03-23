@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
 import './HauntTile.css';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import defaultImg from '../../images/house.jpg';
+
 
 export default function HauntTile ({ haunt }) {
-    const reviews = useSelector((state) => Object.values(state.reviews))
+    const reviews = useSelector((state) => Object.values(state.reviews));
+    // const defaultImg = './images/house.jpg';
+    const [ imgSrc, setImgSrc ] = useState(haunt.imgUrl.length > 0 ? haunt.imgUrl[0] : defaultImg);
 
     let comfortRating = '';
     let sumRating = 0;
@@ -29,10 +34,20 @@ export default function HauntTile ({ haunt }) {
         paranormalRating += '👻'
     }
 
+    const onError = () => {
+        setImgSrc(defaultImg)
+        console.log('in error')
+    };
+
     return (
         <div className='hauntTile-main-div' key={haunt.id}>
             <Link to={`/haunts/${haunt.id}`} style={{ textDecoration: 'none' }}>
-                <img src={haunt.imgUrl[0]} className='hauntTile-img' alt='haunt'/>
+                <img
+                    src={imgSrc}
+                    onError={onError}
+                    className='hauntTile-img'
+                    alt='haunt'
+                />
                 <h3 className='hauntTile-name'>{haunt.name}</h3>
                 <h4 className='hauntTile-address'>{haunt.city}, {haunt.state}</h4>
                 <h4 className='hauntTile-price'>${haunt.price} / per night</h4>
