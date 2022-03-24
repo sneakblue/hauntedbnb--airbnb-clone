@@ -12,18 +12,18 @@ router.get('/', asyncHandler( async (req, res) => {
     return res.json({ images });
 }));
 
-router.post('/create-single', singleMulterUpload('image'), asyncHandler( async (req, res) => {
-    const { hauntId } = req.body;
+router.post('/create-single/:id', singleMulterUpload('image'), asyncHandler( async (req, res) => {
+    const { id } = req.params;
     const imageUrl = await singlePublicFileUpload(req.file);
     const image = await Image.create({
-        hauntId,
-        imageUrl
+        hauntId: id,
+        url: imageUrl
     });
     return res.json({ image });
 }));
 
-router.post('/create-mult', multipleMulterUpload('images'), asyncHandler( async (req, res) => {
-    const { hauntId } = req.body;
+router.post('/create-mult/:hauntId', multipleMulterUpload('images'), asyncHandler( async (req, res) => {
+    const { hauntId } = req.params;
     const imageUrls = await multiplePublicFileUpload(req.file);
     let newImages = [];
     imageUrls.forEach(async (url) => {

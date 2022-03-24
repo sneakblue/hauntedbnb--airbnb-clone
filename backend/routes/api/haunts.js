@@ -32,7 +32,8 @@ router.post('/create', asyncHandler( async (req, res) => {
         description,
         activity
     });
-    return res.json({ ...haunt });
+
+    return res.json({ haunt });
 }));
 
 router.put( '/:id', asyncHandler( async (req, res) => {

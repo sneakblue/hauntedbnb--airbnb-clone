@@ -31,18 +31,18 @@ export default function hauntsReducer (state = initialState, action) {
             })
             console.log(newHaunt);
             newState[newHaunt.haunt.id] = {
-                id: newHaunt.id,
-                userId: newHaunt.userId,
-                address: newHaunt.address,
-                city: newHaunt.city,
-                state: newHaunt.state,
-                country: newHaunt.country,
-                lat: newHaunt.lat,
-                lng: newHaunt.lng,
-                name: newHaunt.name,
-                price: newHaunt.price,
-                description: newHaunt.description,
-                activity: newHaunt.activity,
+                id: newHaunt.haunt.id,
+                userId: newHaunt.haunt.userId,
+                address: newHaunt.haunt.address,
+                city: newHaunt.haunt.city,
+                state: newHaunt.haunt.state,
+                country: newHaunt.haunt.country,
+                lat: newHaunt.haunt.lat,
+                lng: newHaunt.haunt.lng,
+                name: newHaunt.haunt.name,
+                price: newHaunt.haunt.price,
+                description: newHaunt.haunt.description,
+                activity: newHaunt.haunt.activity,
                 imgUrl: newImages,
             };
             return newState;
@@ -121,7 +121,7 @@ export const newHaunt = (haunt) => async dispatch => {
 
         let res;
         if (images.length !== 1) {
-            res = await csrfFetch('/api/images/create-mult', {
+            res = await csrfFetch(`/api/images/create-mult/${createdHaunt.haunt.id}`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "multipart/form-data",
@@ -129,7 +129,7 @@ export const newHaunt = (haunt) => async dispatch => {
                 body: formData,
             })
         } else {
-            res = await csrfFetch('/api/images/create-single', {
+            res = await csrfFetch(`/api/images/create-single/${createdHaunt.haunt.id}`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "multipart/form-data",
@@ -139,6 +139,7 @@ export const newHaunt = (haunt) => async dispatch => {
         }
 
         const newImages = await res.json();
+        console.log(newImages);
 
         // let newImages = [];
         // images.forEach( async image => {
