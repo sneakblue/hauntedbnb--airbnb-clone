@@ -142,20 +142,6 @@ export const newHaunt = (haunt) => async dispatch => {
         }
 
         const newImages = await res.json();
-        console.log(newImages);
-
-        // let newImages = [];
-        // images.forEach( async image => {
-
-        //     const response = await csrfFetch('/api/images/create', {
-        //         method: 'POST',
-        //         body: JSON.stringify({ hauntId: createdHaunt.haunt.id, url: image })
-        //     });
-        //     if (response.ok) {
-        //         const createdImage = await response.json();
-        //         newImages.push(createdImage.imageUrl)
-        //     };
-        // });
         dispatch(createHaunt(createdHaunt, newImages));
         return createdHaunt;
     };

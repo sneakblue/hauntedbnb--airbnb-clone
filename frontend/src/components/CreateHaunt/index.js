@@ -65,16 +65,6 @@ export default function CreateHaunt () {
         return (errors);
     }
 
-    // const handleImage = (e) => {
-    //     const file = e.target.files[0];
-    //     if (file) setImage(file);
-    //     // if (image.length > 0) {
-    //     //     images.push(image);
-    //     //     setImages(images);
-    //     //     setImage('');
-    //     // }
-    // }
-
     const handleImages = (e) => {
         const files = e.target.files;
         if (files.length === 1) setImage(e.target.files[0]);
@@ -105,7 +95,6 @@ export default function CreateHaunt () {
             const res = await dispatch(newHaunt(createdHaunt));
             if (res) {
                 history.push(`/haunts/${res.haunt.id}`);
-                // history.push('/haunts');
             } else {
                 history.push('/');
             }
@@ -117,9 +106,6 @@ export default function CreateHaunt () {
             <h2 className='create-title'>Create a Haunt</h2>
             <form
                 onSubmit={(e) => {
-                    // if (images.length === 1) {
-                    //     setImage(images[0]);
-                    // }
                     handleSubmit(e);
                 }}
                 className='create-form'
