@@ -12,10 +12,7 @@ export async function csrfFetch(url, options = {}) {
         }
         options.headers['XSRF-Token'] = Cookies.get('XSRF-TOKEN');
     }
-    console.log('inside csrf, after options');
-    console.log(options);
     const res = await window.fetch(url, options);
-    console.log(res);
     if(res.status >= 400) throw res;
 
     return res;

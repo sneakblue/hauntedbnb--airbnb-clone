@@ -26,10 +26,13 @@ export default function hauntsReducer (state = initialState, action) {
             const newState = {...state};
             const newHaunt = action.haunt;
             let newImages = [];
-            action.images.forEach(image => {
-                newImages.push(image.url);
-            })
-            console.log(newHaunt);
+            if (action.images.image !== undefined) {
+                newImages.push(action.images.image.url)
+            } else {
+                action.images.newImages.forEach(image => {
+                    newImages.push(image.url);
+                });
+            }
             newState[newHaunt.haunt.id] = {
                 id: newHaunt.haunt.id,
                 userId: newHaunt.haunt.userId,

@@ -24,7 +24,7 @@ router.post('/create-single/:id', singleMulterUpload('image'), asyncHandler( asy
 
 router.post('/create-mult/:hauntId', multipleMulterUpload('images'), asyncHandler( async (req, res) => {
     const { hauntId } = req.params;
-    const imageUrls = await multiplePublicFileUpload(req.file);
+    const imageUrls = await multiplePublicFileUpload(req.files);
     let newImages = [];
     imageUrls.forEach(async (url) => {
         const image = await Image.create({
