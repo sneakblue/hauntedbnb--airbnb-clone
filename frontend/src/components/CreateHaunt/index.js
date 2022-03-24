@@ -18,7 +18,7 @@ export default function CreateHaunt () {
     const [price, setPrice] = useState('');
     const [activity, setActivity] = useState(1);
     const [description, setDescription] = useState('');
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState(null);
     const [images, setImages] = useState([]);
     const [errors, setErrors] = useState([]);
 
@@ -60,20 +60,21 @@ export default function CreateHaunt () {
         if (activity <= 0) {
             errors.push('Must provide a Paranormal Activity level');
         }
+        if (images.length === 0) errors.push('Must provide at least one photo');
         setErrors(errors);
         return (errors);
     }
 
-    const handleImage = () => {
-        if (image.length > 0) {
-            images.push(image);
-            setImages(images);
-            setImage('');
-        }
+    const handleImages = (e) => {
+        const files = e.target.files;
+        if (files.length === 1) setImage(e.target.files[0]);
+        else setImage(null);
+        setImages(files);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(image)
         let submitErrors = checkErrors();
         if (submitErrors.length === 0) {
             const createdHaunt = {
@@ -88,10 +89,15 @@ export default function CreateHaunt () {
                 price,
                 description,
                 activity,
-                images
+                images,
+                image
             }
-            dispatch(newHaunt(createdHaunt));
-            history.push('/haunts');
+            const res = await dispatch(newHaunt(createdHaunt));
+            if (res) {
+                history.push(`/haunts/${res.haunt.id}`);
+            } else {
+                history.push('/');
+            }
         }
     }
 
@@ -99,7 +105,9 @@ export default function CreateHaunt () {
         <div className='create-main-div'>
             <h2 className='create-title'>Create a Haunt</h2>
             <form
-                onSubmit={handleSubmit}
+                onSubmit={(e) => {
+                    handleSubmit(e);
+                }}
                 className='create-form'
             >
                 <ul className='errors'>
@@ -196,7 +204,13 @@ export default function CreateHaunt () {
                         <option>10</option>
                     </select>
                     <label htmlFor='image'>Images</label>
-                    {images.length > 0 && (
+                    <input
+                        type='file'
+                        multiple
+                        name='image'
+                        onChange={handleImages}
+                    />
+                    {/* {images.length > 0 && (
                         <ul className='image-input-list'>
                             {images.map((image, i) => {
                                 return (
@@ -206,14 +220,14 @@ export default function CreateHaunt () {
                                 )
                             })}
                         </ul>
-                    )}
-                    <input
+                    )} */}
+                    {/* <input
                         type='text'
                         name='image'
                         value={image}
                         onChange={e => setImage(e.target.value)}
-                    />
-                    <button type='button' className='create-haunt-btn' onClick={handleImage}>Add photo</button>
+                    /> */}
+                    {/* <button type='button' className='create-haunt-btn' onClick={(e) => image ? handleImages(e) : handleImage(e)}>Add photo</button> */}
                 </div>
                 <button type='submit' className='create-haunt-btn'>Create Haunt</button>
             </form>

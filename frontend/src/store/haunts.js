@@ -26,10 +26,13 @@ export default function hauntsReducer (state = initialState, action) {
             const newState = {...state};
             const newHaunt = action.haunt;
             let newImages = [];
-            action.images.forEach(image => {
-                newImages.push(image.url);
-            })
-
+            if (action.images.image !== undefined) {
+                newImages.push(action.images.image.url)
+            } else {
+                action.images.newImages.forEach(image => {
+                    newImages.push(image.url);
+                });
+            }
             newState[newHaunt.haunt.id] = {
                 id: newHaunt.haunt.id,
                 userId: newHaunt.haunt.userId,
@@ -102,26 +105,45 @@ export const getHaunts = () => async dispatch => {
 };
 
 export const newHaunt = (haunt) => async dispatch => {
-    const { userId, address, city, state, country, lat, lng, name, price, activity, description, images } = haunt;
+    const { userId, address, city, state, country, lat, lng, name, price, activity, description, images, image } = haunt;
     const hauntResponse = await csrfFetch('/api/haunts/create', {
         method: 'POST',
         body: JSON.stringify({ userId, address, city, state, country, lat, lng, name, price, description, activity })
     });
     if(hauntResponse.ok) {
         const createdHaunt = await hauntResponse.json();
-        let newImages = [];
-        images.forEach( async image => {
-            const response = await csrfFetch('/api/images/create', {
+        const formData = new FormData();
+
+        if (images && images.length !== 1) {
+            for (let i = 0; i < images.length; i++) {
+                formData.append("images", images[i]);
+            }
+        }
+
+        if (image) formData.append("image", image);
+
+        let res;
+        if (images.length !== 1) {
+            res = await csrfFetch(`/api/images/create-mult/${createdHaunt.haunt.id}`, {
                 method: 'POST',
-                body: JSON.stringify({ hauntId: createdHaunt.haunt.id, url: image })
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                body: formData,
+            })
+        } else {
+            res = await csrfFetch(`/api/images/create-single/${createdHaunt.haunt.id}`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                body: formData,
             });
-            if (response.ok) {
-                const createdImage = await response.json();
-                newImages.push(createdImage.image)
-            };
-        });
+        }
+
+        const newImages = await res.json();
         dispatch(createHaunt(createdHaunt, newImages));
-        return createHaunt;
+        return createdHaunt;
     };
 };
 
