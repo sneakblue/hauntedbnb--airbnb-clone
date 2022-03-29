@@ -32,13 +32,18 @@ export default function Bookings ({ hauntId }) {
     }, [showEdit, currBooking])
 
     useEffect(() => {
-        bookings.forEach(booking => {
-            if (booking.userId === currUser?.id && booking.hauntId === haunt.id) {
-                setHasBooking(true);
-                setCurrBooking(booking);
+        for (let i = 0; i < bookings.length; i++) {
+            if (bookings[i].userId === currUser?.id && bookings[i].hauntId === haunt.id) {
+                if (Date.parse(bookings[i].startDate) + 86400 < new Date()) {
+                    dispatch(removeBooking(bookings[i].id));
+                } else {
+                    setHasBooking(true);
+                    setCurrBooking(bookings[i]);
+                }
+                break;
             }
-        })
-    }, [bookings, currUser?.id, haunt.id])
+        }
+    }, [dispatch, bookings, currUser?.id, haunt.id])
 
     const handleBooking = async () => {
         if (!currUser) {
@@ -96,8 +101,8 @@ export default function Bookings ({ hauntId }) {
                             selected={editStart}
                             selectsStart
                             onChange={(date) => {
-                                setEditEnd(date);
                                 setEditStart(date);
+                                if (editEnd < date) setEditEnd(date);
                             }}
                             minDate={new Date()}
                             startDate={editStart}
@@ -155,7 +160,7 @@ export default function Bookings ({ hauntId }) {
                         selectsStart
                         onChange={(date) => {
                             setStartDate(date);
-                            setEndDate(date);
+                            if (endDate < date) setEndDate(date);
                         }}
                         minDate={new Date()}
                         startDate={startDate}
