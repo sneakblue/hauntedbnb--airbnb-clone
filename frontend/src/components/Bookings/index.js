@@ -23,10 +23,6 @@ export default function Bookings ({ hauntId }) {
     const bookings = useSelector(state => Object.values(state.bookings));
 
     useEffect(() => {
-
-    }, [hasBooking])
-
-    useEffect(() => {
         dispatch(findBookings());
     }, [dispatch])
 
@@ -42,7 +38,7 @@ export default function Bookings ({ hauntId }) {
                 setCurrBooking(booking);
             }
         })
-    }, [bookings, currUser?.id])
+    }, [bookings, currUser?.id, haunt.id])
 
     const handleBooking = async () => {
         if (!currUser) {
@@ -81,18 +77,14 @@ export default function Bookings ({ hauntId }) {
     let bookingContent = null;
 
     if (hasBooking) {
-        // console.log(currBooking.startDate.getDay())
         const currStart = currBooking.startDate.slice(0, 10);
-        let formattedStart = dateFormatter(currStart)
+        let formattedStart = dateFormatter(currStart);
         const currEnd = currBooking.endDate.slice(0, 10);
         let formattedEnd = dateFormatter(currEnd);
 
-        let bookingLength = Date.parse(currBooking.endDate) - Date.parse(currBooking.startDate)
-
-        let totalDays = (bookingLength / (60*60*24*1000))
-
+        let bookingLength = Date.parse(currBooking.endDate) - Date.parse(currBooking.startDate);
+        let totalDays = (bookingLength / (60*60*24*1000));
         let totalCost = (totalDays * Number(haunt.price)).toFixed(2);
-        console.log(totalCost)
 
         if (showEdit) {
             bookingContent = (
@@ -103,7 +95,10 @@ export default function Bookings ({ hauntId }) {
                         <DatePicker
                             selected={editStart}
                             selectsStart
-                            onChange={(date) => setEditStart(date)}
+                            onChange={(date) => {
+                                setEditEnd(date);
+                                setEditStart(date);
+                            }}
                             minDate={new Date()}
                             startDate={editStart}
                             endDate={editEnd}
@@ -158,7 +153,10 @@ export default function Bookings ({ hauntId }) {
                     <DatePicker
                         selected={startDate}
                         selectsStart
-                        onChange={(date) => setStartDate(date)}
+                        onChange={(date) => {
+                            setStartDate(date);
+                            setEndDate(date);
+                        }}
                         minDate={new Date()}
                         startDate={startDate}
                         endDate={endDate}
