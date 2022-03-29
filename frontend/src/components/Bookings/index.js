@@ -42,7 +42,7 @@ export default function Bookings ({ hauntId }) {
                 setCurrBooking(booking);
             }
         })
-    }, [bookings, currUser?.id])
+    }, [bookings, currUser?.id, haunt.id])
 
     const handleBooking = async () => {
         if (!currUser) {
