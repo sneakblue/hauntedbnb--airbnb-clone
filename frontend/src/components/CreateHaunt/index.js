@@ -8,6 +8,10 @@ export default function CreateHaunt () {
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
+    if(!sessionUser) {
+        history.push('/login');
+    }
+    
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -22,9 +26,6 @@ export default function CreateHaunt () {
     const [images, setImages] = useState([]);
     const [errors, setErrors] = useState([]);
 
-    if(!sessionUser) {
-        history.push('/login');
-    }
 
     const checkErrors = () => {
         const errors = [];
