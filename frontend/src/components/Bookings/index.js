@@ -23,10 +23,6 @@ export default function Bookings ({ hauntId }) {
     const bookings = useSelector(state => Object.values(state.bookings));
 
     useEffect(() => {
-
-    }, [hasBooking])
-
-    useEffect(() => {
         dispatch(findBookings());
     }, [dispatch])
 

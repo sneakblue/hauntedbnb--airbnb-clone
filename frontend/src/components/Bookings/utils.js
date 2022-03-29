@@ -1,5 +1,3 @@
-
-
 export const dateFormatter = (date) => {
     let newDate = date.split('');
     let year = '';
