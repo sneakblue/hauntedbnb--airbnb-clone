@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { newBooking, findBookings, removeBooking, updateBooking } from '../../store/bookings';
-import { dateFormatter } from './utils';
+// import { dateFormatter } from './utils';
 
 import "react-datepicker/dist/react-datepicker.css";
 import './Bookings.css';
@@ -84,50 +84,66 @@ export default function Bookings ({ hauntId }) {
     let bookingContent = null;
 
     if (hasBooking) {
-        const currStart = currBooking.startDate.slice(0, 10);
-        let formattedStart = dateFormatter(currStart);
-        const currEnd = currBooking.endDate.slice(0, 10);
-        let formattedEnd = dateFormatter(currEnd);
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        let formattedStart = new Date(currBooking.startDate).toLocaleDateString('en-US', options);
+        let formattedEnd = new Date(currBooking.endDate).toLocaleDateString('en-US', options);
 
         let bookingLength = Date.parse(currBooking.endDate) - Date.parse(currBooking.startDate);
-        let totalDays = (bookingLength / (60*60*24*1000));
-        let totalCost = (totalDays * Number(haunt.price)).toFixed(2);
+        let totalDays = Math.ceil((bookingLength / (60*60*24*1000)));
+        let totalCost;
+        if (totalDays <= 0) {
+            totalCost = (1 * Number(haunt.price)).toFixed(2);
+        } else {
+            totalCost = (totalDays * Number(haunt.price)).toFixed(2);
+        }
 
         if (showEdit) {
             // Existing booking edit Form
             bookingContent = (
-                <>
-                    <h2>Change Your Stay</h2>
-                    <div className='date-div'>
-                        <h5>Start Date</h5>
-                        <DatePicker
-                            selected={editStart}
-                            selectsStart
-                            onChange={(date) => {
-                                setEditStart(date);
-                                if (editEnd < date) setEditEnd(date);
-                            }}
-                            minDate={new Date()}
-                            startDate={editStart}
-                            endDate={editEnd}
-                        />
-                        <h5>End Date</h5>
-                        <DatePicker
-                            selected={editEnd}
-                            selectsEnd
-                            onChange={(date) => setEditEnd(date)}
-                            startDate={editStart}
-                            endDate={editEnd}
-                            minDate={editStart}
-                        />
-                        <button className='bookings-btn' onClick={handleEdit}>Update Booking</button>
+                <div className='booking-edit--div'>
+                    <div className='booking-edit-dateSelection--div'>
+                        <h2>Change Your Stay</h2>
+                        <div className='date-div'>
+                            <h5>Start Date</h5>
+                            <DatePicker
+                                selected={editStart}
+                                selectsStart
+                                onChange={(date) => {
+                                    setEditStart(date);
+                                    if (editEnd < date) setEditEnd(date);
+                                }}
+                                minDate={new Date()}
+                                startDate={editStart}
+                                endDate={editEnd}
+                            />
+                            <h5>End Date</h5>
+                            <DatePicker
+                                selected={editEnd}
+                                selectsEnd
+                                onChange={(date) => setEditEnd(date)}
+                                startDate={editStart}
+                                endDate={editEnd}
+                                minDate={editStart}
+                            />
+                            <button className='bookings-btn' onClick={handleEdit}>Update Booking</button>
+                        </div>
                     </div>
-                </>
+                    <div className='bookings-new-info--div'>
+                        <div className='bookings-new-info-titles--div'>
+                            <h5 className='bookings-new-info--h5s'>Length:</h5>
+                            <h5 className='bookings-new-info--h5s'>Total Cost:</h5>
+                        </div>
+                        <div className='bookings-new-info-data--div'>
+                            <h5 className='bookings-new-info--h5s'>{totalDays} Days</h5>
+                            <h5 className='bookings-new-info--h5s'>${totalCost}</h5>
+                        </div>
+                    </div>
+                </div>
             )
         } else {
             // Existing booking display
             bookingContent = (
-                <>
+                <div className='existing-booking--div'>
                     <h2>Your Booking</h2>
                     <div className='currBooking-div'>
                         <h5 className='booking-start-h5'>Check-in:</h5>
@@ -144,7 +160,7 @@ export default function Bookings ({ hauntId }) {
                         <button className='bookings-btn' onClick={() => showEdit ? setShowEdit(false) : setShowEdit(true)}>Edit Booking</button>
                         <button className='bookings-btn' onClick={handleDelete}>Delete Booking</button>
                     </div>
-                </>
+                </div>
             )
         }
 
@@ -189,12 +205,12 @@ export default function Bookings ({ hauntId }) {
                 </div>
                 <div className='bookings-new-info--div'>
                     <div className='bookings-new-info-titles--div'>
-                        <h5>Length of Stay:</h5>
-                        <h5>Total Cost:</h5>
+                        <h5 className='bookings-new-info--h5s'>Length:</h5>
+                        <h5 className='bookings-new-info--h5s'>Total Cost:</h5>
                     </div>
                     <div className='bookings-new-info-data--div'>
-                        <h5>{totalDays} Days</h5>
-                        <h5>${totalCost}</h5>
+                        <h5 className='bookings-new-info--h5s'>{totalDays} Days</h5>
+                        <h5 className='bookings-new-info--h5s'>${totalCost}</h5>
                     </div>
                 </div>
             </>
