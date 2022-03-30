@@ -75,6 +75,8 @@ export default function Bookings ({ hauntId }) {
     const handleDelete = async () => {
         await dispatch(removeBooking(currBooking.id));
         setHasBooking(false);
+        setStartDate(new Date());
+        setEndDate(new Date());
     }
 
     let content = null;
