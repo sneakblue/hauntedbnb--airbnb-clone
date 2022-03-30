@@ -2,14 +2,15 @@
     background-color: blanchedalmond;
     position: relative;
     display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
+    justify-content: space-evenly;
     align-items: center;
     width: 90%;
+    height: auto;
     border: 1px solid black;
     border-radius: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .currBooking-div {
@@ -55,4 +56,35 @@
 
 .bookings-btn:active {
     box-shadow: -2px -2px 1px black;
+}
+
+.new-booking-form--div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.bookings-new-info--div {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    /* width: 50%; */
+    background-color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 50px 10px 50px 10px;
+}
+
+.bookings-new-info-titles--div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+}
+
+.bookings-new-info-data--div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 5px;
 }
