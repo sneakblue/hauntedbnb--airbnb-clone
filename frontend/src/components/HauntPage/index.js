@@ -19,7 +19,7 @@ export default function HauntPage () {
     const [image, setImage] = useState(defaultImg);
     const currUser = useSelector(state => state.session.user);
     const reviews = useSelector(state => Object.values(state.reviews));
-    
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -89,6 +89,8 @@ export default function HauntPage () {
         for (let i = 0; i < avgRating; i++) {
             comfortRating += '⭐';
         }
+    } else {
+        comfortRating = 'No Reviews Yet!';
     }
 
     const onError = () => {

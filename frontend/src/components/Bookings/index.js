@@ -75,6 +75,8 @@ export default function Bookings ({ hauntId }) {
     const handleDelete = async () => {
         await dispatch(removeBooking(currBooking.id));
         setHasBooking(false);
+        setStartDate(new Date());
+        setEndDate(new Date());
     }
 
     let content = null;
@@ -92,6 +94,7 @@ export default function Bookings ({ hauntId }) {
         let totalCost = (totalDays * Number(haunt.price)).toFixed(2);
 
         if (showEdit) {
+            // Existing booking edit Form
             bookingContent = (
                 <>
                     <h2>Change Your Stay</h2>
@@ -122,6 +125,7 @@ export default function Bookings ({ hauntId }) {
                 </>
             )
         } else {
+            // Existing booking display
             bookingContent = (
                 <>
                     <h2>Your Booking</h2>
@@ -150,32 +154,48 @@ export default function Bookings ({ hauntId }) {
             </>
         )
     } else {
+        // New Booking Creation Form
+        let bookingLength = Date.parse(endDate) - Date.parse(startDate);
+        let totalDays = (bookingLength / (60*60*24*1000));
+        let totalCost = (totalDays * Number(haunt.price)).toFixed(2);
         content = (
             <>
-                <h2>Book Your Stay</h2>
-                <div className='date-div'>
-                    <h5>Start Date</h5>
-                    <DatePicker
-                        selected={startDate}
-                        selectsStart
-                        onChange={(date) => {
-                            setStartDate(date);
-                            if (endDate < date) setEndDate(date);
-                        }}
-                        minDate={new Date()}
-                        startDate={startDate}
-                        endDate={endDate}
-                    />
-                    <h5>End Date</h5>
-                    <DatePicker
-                        selected={endDate}
-                        selectsEnd
-                        onChange={(date) => setEndDate(date)}
-                        startDate={startDate}
-                        endDate={endDate}
-                        minDate={startDate}
-                    />
-                    <button className='bookings-btn' onClick={handleBooking}>Book</button>
+                <div className='new-booking-form--div'>
+                    <h2>Book Your Stay</h2>
+                    <div className='date-div'>
+                        <h5>Start Date</h5>
+                        <DatePicker
+                            selected={startDate}
+                            selectsStart
+                            onChange={(date) => {
+                                setStartDate(date);
+                                if (endDate < date) setEndDate(date);
+                            }}
+                            minDate={new Date()}
+                            startDate={startDate}
+                            endDate={endDate}
+                        />
+                        <h5>End Date</h5>
+                        <DatePicker
+                            selected={endDate}
+                            selectsEnd
+                            onChange={(date) => setEndDate(date)}
+                            startDate={startDate}
+                            endDate={endDate}
+                            minDate={startDate}
+                        />
+                        <button className='bookings-btn' onClick={handleBooking}>Book</button>
+                    </div>
+                </div>
+                <div className='bookings-new-info--div'>
+                    <div className='bookings-new-info-titles--div'>
+                        <h5>Length of Stay:</h5>
+                        <h5>Total Cost:</h5>
+                    </div>
+                    <div className='bookings-new-info-data--div'>
+                        <h5>{totalDays} Days</h5>
+                        <h5>${totalCost}</h5>
+                    </div>
                 </div>
             </>
         )
