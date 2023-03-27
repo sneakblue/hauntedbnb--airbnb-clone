@@ -43,7 +43,7 @@ module.exports = {
             activity: 6
         },
         {
-            userId: 3,
+            userId: 6,
             address: '525 S Winchester Blvd',
             city: 'San Jose',
             state: 'California',
@@ -56,7 +56,7 @@ module.exports = {
             activity: 8
         },
         {
-            userId: 3,
+            userId: 7,
             address: '230 Second St',
             city: 'Fall River',
             state: 'Massachusetts',
@@ -69,7 +69,7 @@ module.exports = {
             activity: 6
         },
         {
-            userId: 3,
+            userId: 9,
             address: '508 E 2nd St',
             city: 'Villisca',
             state: 'Iowa',
@@ -82,7 +82,7 @@ module.exports = {
             activity: 8
         },
         {
-            userId: 3,
+            userId: 8,
             address: '430 Keysburg Rd',
             city: 'Adams',
             state: 'Tennessee',
@@ -95,7 +95,7 @@ module.exports = {
             activity: 9
         },
         {
-            userId: 3,
+            userId: 1,
             address: '1600 Pennsylvania Avenue NW',
             city: 'Washington',
             state: 'District of Columbia',
@@ -108,7 +108,7 @@ module.exports = {
             activity: 5
         },
         {
-            userId: 3,
+            userId: 4,
             address: '508 N 2nd St',
             city: 'Atchison',
             state: 'Kansas',
@@ -121,7 +121,7 @@ module.exports = {
             activity: 10
         },
         {
-            userId: 3,
+            userId: 8,
             address: '4308 Franklin Blvd',
             city: 'Cleveland',
             state: 'Ohio',
@@ -134,7 +134,7 @@ module.exports = {
             activity: 6
         },
         {
-            userId: 3,
+            userId: 9,
             address: '1 Lodge St',
             city: 'Asheville',
             state: 'North Carolina',
@@ -147,7 +147,7 @@ module.exports = {
             activity: 3
         },
         {
-            userId: 3,
+            userId: 2,
             address: 'Raynham Hall, 1 Raynham Hall',
             city: 'East Raynham',
             state: 'Fakenham',
@@ -160,7 +160,7 @@ module.exports = {
             activity: 9
         },
         {
-            userId: 3,
+            userId: 6,
             address: '30100 Venice',
             city: 'Metropolitan City of Venice',
             state: 'n/a',
@@ -173,7 +173,7 @@ module.exports = {
             activity: 10
         },
         {
-            userId: 3,
+            userId: 7,
             address: 'Historic Site, Visitor Centre',
             city: 'Port Arthur',
             state: 'Tasmania',
@@ -186,7 +186,7 @@ module.exports = {
             activity: 4
         },
         {
-            userId: 3,
+            userId: 8,
             address: '1126 Queens Hwy',
             city: 'Long Beach',
             state: 'California',
@@ -199,7 +199,7 @@ module.exports = {
             activity: 9
         },
         {
-            userId: 3,
+            userId: 1,
             address: '1 Austin Terrace',
             city: 'Toronto',
             state: 'Ontario',
@@ -212,7 +212,7 @@ module.exports = {
             activity: 2
         },
         {
-            userId: 3,
+            userId: 8,
             address: '333 E Wonderview Ave',
             city: 'Estes Park',
             state: 'Colorado',
