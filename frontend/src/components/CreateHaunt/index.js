@@ -11,7 +11,7 @@ export default function CreateHaunt () {
     if(!sessionUser) {
         history.push('/login');
     }
-    
+
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');

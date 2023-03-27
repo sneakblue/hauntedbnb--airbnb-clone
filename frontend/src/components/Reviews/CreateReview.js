@@ -30,7 +30,6 @@ export default function CreateReview ({haunt, currUser, hauntReviews}) {
             dispatch(postReview(newReview));
             history.push(`/haunts/${haunt.id}`);
         }
-
     }
 
     return (

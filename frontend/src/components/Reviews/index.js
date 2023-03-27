@@ -6,19 +6,11 @@ import { removeReview } from '../../store/reviews';
 import './Reviews.css';
 
 export default function Reviews ({ haunt, hauntReviews }) {
-    // const reviews = useSelector(state => Object.values(state.reviews));
     const currUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const [hasReview, setHasReview] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [selectedReview, setSelectedReview] = useState({});
-
-    // const hauntReviews = [];
-    // reviews.forEach(review => {
-    //     if (review.hauntId === haunt.id) {
-    //         hauntReviews.push(review)
-    //     }
-    // });
 
     const handleDelete = async (reviewId) => {
         await dispatch(removeReview(reviewId))
@@ -57,11 +49,7 @@ export default function Reviews ({ haunt, hauntReviews }) {
                     hauntReviews={hauntReviews}
                 />
             )}
-            {!currUser && (
-                <div>
-                    <h3>Login to write a review!</h3>
-                </div>
-            )}
+
             <div className='reviews-list-container'>
                 {hauntReviews.map(review => {
                     let rating = '';
@@ -85,6 +73,11 @@ export default function Reviews ({ haunt, hauntReviews }) {
                     )
                 })}
             </div>
+            {!currUser && (
+                <div>
+                    <h3>Login to write a review!</h3>
+                </div>
+            )}
         </div>
     )
 }
