@@ -1,14 +1,51 @@
 # HauntBnB
 
 ## Snapshot
-Hauntbnb is a fullstack airbnb clone with a spooky theme! It takes the idea of being able to book spots to stay at, but more specifically at haunted locations! 👻
+Hauntbnb is a fullstack airbnb clone with a spooky theme! It takes the idea of being able to book spots to stay at, but more specifically at haunted locations!
+
+Live Link:
+[👻Boo!][site-url]
 
 ## Features
 ### Haunts
 - Users can create Haunts as locations to be viewed
 - Each haunt has a paranormal activity rating as well as an averaged comfort rating based on user reviews
+- Owners of the haunt can edit the data, or delete the haunt from the list of available locations
 
-- 
+### Reviews
+- Users may leave a single review for each haunt
+- Each review can choose a comfort rating, as well as a written review
+- Users are able to edit or delete their reviews, up to changing the text or rating
+
+### Bookings
+- Users can book a stay at a haunt based on the current day
+- Each booking will calculate total cost based on cost of location
+- The booking section will also list the amount of days booked
+
+## Site Preview
+### Splash Page
+![img](./frontend/public/preview_images/splash.JPG)
+
+## Homepage
+![img](./frontend/public/preview_images/haunts.JPG)
+
+## Login
+![img](./frontend/public/preview_images/login.JPG)
+
+## Signup
+![img](./frontend/public/preview_images/signup.JPG)
+
+## Create a Haunt Page
+![img](./frontend/public/preview_images/create_haunt.JPG)
+
+## Haunt Details
+![img](./frontend/public/preview_images/single_haunt.JPG)
+
+## Edit Haunt
+![img](./frontend/public/preview_images/edit_haunt.JPG)
+
+## Booking
+![img](./frontend/public/preview_images/booking.JPG)
 
 ## Architecture
 Hauntbnb is created using an Express backend and React frontend. The database utilizes PostgreSQL along with Sequelize to implement updates and changes. On the frontend, Redux is used for state management along with AWS S3 services for image upload.
@@ -35,7 +72,9 @@ Hauntbnb is created using an Express backend and React frontend. The database ut
 
 
 
-<!-- Technologies and Shield Links -->
+<!-- Technologies, Shield Links, and general links -->
+
+[site-url]: https://hauntbnb.herokuapp.com/
 
 [node-shield]: https://img.shields.io/badge/-NODE-green?style=for-the-badge&logo=nodedotjs
 [node-url]: https://nodejs.org/en
