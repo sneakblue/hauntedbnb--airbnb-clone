@@ -1,7 +1,7 @@
 {
-  "name": "react-solo-project",
-  "version": "1.0.0",
-  "description": "",
+  "name": "hauntbnb",
+  "version": "1.5.0",
+  "description": "A spooky clone of airbnb!",
   "main": "index.js",
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
