@@ -1,8 +1,17 @@
 # HauntBnB
 
-## Description
-Hauntbnb is an airbnb clone with a spooky theme! It takes the idea of being able to book spots to stay at, but more specifically at haunted locations! 👻
+## Snapshot
+Hauntbnb is a fullstack airbnb clone with a spooky theme! It takes the idea of being able to book spots to stay at, but more specifically at haunted locations! 👻
 
+## Features
+### Haunts
+- Users can create Haunts as locations to be viewed
+- Each haunt has a paranormal activity rating as well as an averaged comfort rating based on user reviews
+
+- 
+
+## Architecture
+Hauntbnb is created using an Express backend and React frontend. The database utilizes PostgreSQL along with Sequelize to implement updates and changes. On the frontend, Redux is used for state management along with AWS S3 services for image upload.
 
 
 ## Technologies Used
