@@ -26,25 +26,25 @@ Live Link:
 ### Splash Page
 ![img](./frontend/public/preview_images/splash.JPG)
 
-## Homepage
+### Homepage
 ![img](./frontend/public/preview_images/haunts.JPG)
 
-## Login
+### Login
 ![img](./frontend/public/preview_images/login.JPG)
 
-## Signup
+### Signup
 ![img](./frontend/public/preview_images/signup.JPG)
 
-## Create a Haunt Page
+### Create a Haunt Page
 ![img](./frontend/public/preview_images/create_haunt.JPG)
 
-## Haunt Details
+### Haunt Details
 ![img](./frontend/public/preview_images/single_haunt.JPG)
 
-## Edit Haunt
+### Edit Haunt
 ![img](./frontend/public/preview_images/edit_haunt.JPG)
 
-## Booking
+### Booking
 ![img](./frontend/public/preview_images/booking.JPG)
 
 ## Architecture
