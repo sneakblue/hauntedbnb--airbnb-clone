@@ -1,5 +1,5 @@
 .hauntTile-main-div {
-    height: 335px;
+    height: 360px;
     width: 300px;
     margin: 10px;
     border: 1px solid white;
@@ -16,14 +16,13 @@
 }
 
 .hauntTile-img {
-    height: 70%;
+    height: 60%;
     width: 100%;
 }
 
 .hauntTile-name {
     text-decoration: none;
     color: red;
-    cursor: pointer;
     margin-left: 20px;
 }
 

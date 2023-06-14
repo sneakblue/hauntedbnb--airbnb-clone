@@ -144,7 +144,7 @@ export default function Bookings ({ hauntId }) {
             // Existing booking display
             bookingContent = (
                 <div className='existing-booking--div'>
-                    <h2>Your Booking</h2>
+                    <h2 classname='booking-title'>Your Booking</h2>
                     <div className='currBooking-div'>
                         <h5 className='booking-start-h5'>Check-in:</h5>
                         <h5>{formattedStart}</h5>
@@ -177,7 +177,7 @@ export default function Bookings ({ hauntId }) {
         content = (
             <>
                 <div className='new-booking-form--div'>
-                    <h2>Book Your Stay</h2>
+                    <h2 classname='booking-title'>Book Your Stay</h2>
                     <div className='date-div'>
                         <h5>Start Date</h5>
                         <DatePicker

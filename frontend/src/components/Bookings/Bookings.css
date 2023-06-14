@@ -77,6 +77,10 @@
     box-shadow: -2px -2px 1px black;
 }
 
+.booking-title {
+    font-family: 'Carter One', cursive;
+}
+
 .new-booking-form--div {
     display: flex;
     flex-direction: column;
