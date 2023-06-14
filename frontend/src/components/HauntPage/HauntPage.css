@@ -1,8 +1,6 @@
 .haunt-img-div {
     display: flex;
     flex-direction: column;
-    /* min-height: 500px; */
-    /* max-height: 600px; */
     height: 40%;
     width: 49%;
     border-radius: 10px;
@@ -41,7 +39,6 @@
 
 .haunt-details-div {
     width: 48%;
-    /* min-height: 500px; */
     height: auto;
     display: flex;
     box-shadow: 0px 0px 10px white;
