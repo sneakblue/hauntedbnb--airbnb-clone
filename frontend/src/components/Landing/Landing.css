@@ -16,17 +16,15 @@
     font-weight: bold;
     width: 200px;
     box-shadow: 0px 0px 10px white;
+    transition: box-shadow 0.5s;
 }
 
 .landing-haunts-btn:hover {
-    /* background-color: lightgray; */
-    box-shadow: 2px 2px 5px white;
-    /* transition: background-color 0.5s; */
-    /* border: 1px solid rgba(0, 0, 0, 0.5) */
+    box-shadow: 0px 0px 4px white;
 }
 
 .landing-haunts-btn:active {
-    box-shadow: -2px -2px 5px white;
+    box-shadow: -2px -2px 4px gray;
 }
 
 .landing-title {
