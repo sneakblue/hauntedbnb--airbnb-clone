@@ -109,6 +109,10 @@
 .site-title {
     background-color: whitesmoke;
     display: flex;
-    width: 100px;
+    width: 200px;
     align-items: center;
+}
+
+.hauntbnb-title {
+    font-family: 'Carter One', cursive;
 }
