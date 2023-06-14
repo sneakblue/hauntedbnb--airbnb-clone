@@ -1,5 +1,5 @@
 .hauntTile-main-div {
-    height: 335px;
+    height: 360px;
     width: 300px;
     margin: 10px;
     border: 1px solid white;
@@ -7,23 +7,22 @@
     overflow: hidden;
     box-shadow: 0px 0px 10px white;
     background-color: darkslategrey;
+    transition: background-color 0.5s, box-shadow 0.5s;
 }
 
 .hauntTile-main-div:hover {
     background-color: black;
-    box-shadow: 0px 0px 5px whitesmoke;
-    transition: background-color 0.5s;
+    box-shadow: 0px 0px 2px whitesmoke;
 }
 
 .hauntTile-img {
-    height: 70%;
+    height: 60%;
     width: 100%;
 }
 
 .hauntTile-name {
     text-decoration: none;
     color: red;
-    cursor: pointer;
     margin-left: 20px;
 }
 

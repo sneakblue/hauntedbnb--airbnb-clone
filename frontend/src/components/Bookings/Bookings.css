@@ -63,17 +63,22 @@
     cursor: pointer;
     margin: 10px;
     padding: 5px;
+    transition: background-color 0.5s, box-shadow 0.5s;
 }
 
 .bookings-btn:hover {
     background-color: lightgray;
-    box-shadow: 2px 2px 5px black;
-    transition: background-color 0.5s;
+    box-shadow: 2px 2px 2px black;
+
     border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .bookings-btn:active {
     box-shadow: -2px -2px 1px black;
+}
+
+.booking-title {
+    font-family: 'Carter One', cursive;
 }
 
 .new-booking-form--div {
@@ -87,7 +92,6 @@
     display: flex;
     flex-direction: row;
     height: 100%;
-    /* width: 50%; */
     background-color: whitesmoke;
     border: 1px solid black;
     border-radius: 5px;

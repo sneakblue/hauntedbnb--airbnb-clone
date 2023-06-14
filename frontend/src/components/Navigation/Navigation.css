@@ -6,7 +6,6 @@
 
 .profile-dropdown {
     list-style-type: none;
-    /* border: 1px solid black; */
     box-shadow: 0px 0px 5px black;
     font-weight: bold;
     background-color: white;
@@ -29,18 +28,19 @@
     border: 1px solid black;
     padding: 2px;
     border-radius: 5px;
+    font-family: 'Carter One', cursive;
     font-weight: bold;
     text-decoration: none;
     color: black;
     cursor: pointer;
     margin: 10px;
     padding: 5px;
+    transition: background-color 0.5s, box-shadow 0.5s;
 }
 
 .dropdown-logout-btn:hover {
     background-color: lightgray;
     box-shadow: 2px 2px 5px black;
-    transition: background-color 0.5s;
     border: 1px solid rgba(0, 0, 0, 0.5)
 }
 
@@ -54,7 +54,6 @@
     border-radius: 5px;
     padding: 4px;
     margin: 10px;
-    /* width: 10%; */
     font-weight: bold;
 }
 
@@ -62,18 +61,19 @@
     border: 1px solid black;
     padding: 2px;
     border-radius: 5px;
+    font-family: 'Carter One', cursive;
     font-weight: bold;
     text-decoration: none;
     color: black;
     cursor: pointer;
     margin: 10px;
     padding: 5px;
+    transition: background-color 0.5s, box-shadow 0.5s;
 }
 
 .nav-btn:hover {
     background-color: lightgray;
     box-shadow: 2px 2px 5px black;
-    transition: background-color 0.5s;
     border: 1px solid rgba(0, 0, 0, 0.5)
 }
 
@@ -95,7 +95,6 @@
 
 .navbar-container {
     display: flex;
-    /* position:absolute; */
     width: 100vw;
     background-color: whitesmoke;
 }
@@ -110,6 +109,10 @@
 .site-title {
     background-color: whitesmoke;
     display: flex;
-    width: 100px;
+    width: 200px;
     align-items: center;
+}
+
+.hauntbnb-title {
+    font-family: 'Carter One', cursive;
 }

@@ -64,7 +64,7 @@ export default function Reviews ({ haunt, hauntReviews }) {
                                 <>
                                     <div className='review-edit-delete-div'>
                                         <button className='review-edit-btn' onClick={() => showEdit === true ? setShowEdit(false) : setShowEdit(true)}>Edit</button>
-                                        <button className='review-edit-btn' onClick={() => handleDelete(review.id)}>Delete Review</button>
+                                        <button className='review-edit-btn delete-btn' onClick={() => handleDelete(review.id)}>Delete Review</button>
                                     </div>
                                     {content}
                                 </>

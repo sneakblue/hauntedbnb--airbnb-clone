@@ -29,7 +29,7 @@ export default function Navigation ({ isLoaded }) {
             <div className='logo'>
             </div>
             <div className='site-title'>
-                <h4>Haunt Bnb</h4>
+                <h4 className='hauntbnb-title'>Haunt Bnb</h4>
             </div>
             <nav className='navbar'>
                 <NavLink exact to='/haunts' className='nav-btn'>Home</NavLink>

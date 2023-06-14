@@ -47,14 +47,24 @@
     cursor: pointer;
     margin: 10px;
     padding: 5px;
+    transition: box-shadow 0.2s, background-color 0.2s;
 }
 
 .review-edit-btn:hover {
-    box-shadow: 2px 2px 5px black;
+    box-shadow: 2px 2px 3px black;
+    background-color: lightgray;
 }
 
 .review-edit-btn:active {
     box-shadow: -2px -2px 1px black;
+}
+
+.delete-btn:hover {
+    background-color: lightcoral;
+}
+
+.submit-edit-btn:hover {
+    background-color: lightgreen;
 }
 
 .review-text {
@@ -130,6 +140,7 @@
     cursor: pointer;
     margin: 10px;
     padding: 5px;
+    transition: box-shadow 0.2s;
 }
 
 .submit-review-btn:hover {
