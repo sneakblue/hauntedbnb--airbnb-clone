@@ -2,14 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* background-color: darkslategrey; */
     min-height: 100vh;
 }
 
 .title-div {
     display: flex;
     justify-content: center;
-    /* background-color: darkslategrey; */
     color: white;
 }
 
