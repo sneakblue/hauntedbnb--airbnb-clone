@@ -69,7 +69,7 @@ export default function EditReview ({ selectedReview, setShowEdit }) {
                     </select>
                 </div>
                 <div className='edit-review-submit-btn-div'>
-                    <button type='submit' className='review-edit-btn'>Submit Review</button>
+                    <button type='submit' className='review-edit-btn submit-edit-btn'>Submit Review</button>
                 </div>
             </form>
         </div>
