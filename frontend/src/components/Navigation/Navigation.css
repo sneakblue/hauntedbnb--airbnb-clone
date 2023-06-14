@@ -28,6 +28,7 @@
     border: 1px solid black;
     padding: 2px;
     border-radius: 5px;
+    font-family: 'Carter One', cursive;
     font-weight: bold;
     text-decoration: none;
     color: black;
@@ -53,7 +54,6 @@
     border-radius: 5px;
     padding: 4px;
     margin: 10px;
-    /* width: 10%; */
     font-weight: bold;
 }
 
@@ -61,6 +61,7 @@
     border: 1px solid black;
     padding: 2px;
     border-radius: 5px;
+    font-family: 'Carter One', cursive;
     font-weight: bold;
     text-decoration: none;
     color: black;
@@ -94,7 +95,6 @@
 
 .navbar-container {
     display: flex;
-    /* position:absolute; */
     width: 100vw;
     background-color: whitesmoke;
 }
