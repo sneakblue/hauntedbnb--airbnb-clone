@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getHaunts } from '../../store/haunts';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactLoading from 'react-loading';
 import { getReviews } from '../../store/reviews';
 import HauntTile from '../HauntTile';
 import './HomePage.css';
+import batGif from '../../images/bat.gif';
 
 export default function HomePage () {
     const dispatch = useDispatch();
@@ -37,12 +37,7 @@ export default function HomePage () {
         content = (
             <>
                 <div className='loading-div'>
-                    <ReactLoading
-                        type={"spinningBubbles"}
-                        color={'#F7F9F9'}
-                        height={150}
-                        width={150}
-                    />
+                    <img src={batGif} className='loading-img'/>
                 </div>
 
             </>
