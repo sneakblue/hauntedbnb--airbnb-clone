@@ -3,14 +3,13 @@
     flex-direction: column;
     height: 40%;
     width: 49%;
-    border-radius: 10px;
     overflow: hidden;
 }
 
 .haunt-img {
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
+    min-height: 400px;
+    max-height: 600px;
 }
 
 .main-haunt-div {
@@ -51,12 +50,10 @@
     border-radius: 5px;
     position: relative;
     font-weight: bold;
-    /* top: 35px; */
 }
 
 .haunt-details-detail {
     padding-left: 10px;
-    /* border-bottom: 1px solid black; */
     width: 100%;
 }
 
@@ -64,16 +61,18 @@
     border: 1px solid black;
     padding: 2px;
     border-radius: 5px;
-    font-weight: bold;
+    font-family: 'Carter One', cursive;
     text-decoration: none;
     color: black;
     cursor: pointer;
     margin: 10px;
     padding: 5px;
+    transition: box-shadow 0.3s, background-color 0.3s;
 }
 
 .haunt-details-btn:hover {
     box-shadow: 2px 2px 5px black;
+    background-color: lightgrey;
 }
 
 .haunt-details-btn:active {

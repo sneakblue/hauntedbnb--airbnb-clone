@@ -7,6 +7,7 @@ import EditHaunt from "../EditHaunt";
 import Bookings from '../Bookings';
 import Reviews from "../Reviews";
 import defaultImg from '../../images/house.jpg';
+import batGif from '../../images/bat.gif';
 import './HauntPage.css';
 
 export default function HauntPage () {
@@ -17,6 +18,7 @@ export default function HauntPage () {
     const [showForm, setShowForm] = useState(false);
     const haunt = useSelector(state => state.haunts[id]);
     const [image, setImage] = useState(defaultImg);
+    const [loading, setLoading] = useState(true);
     const currUser = useSelector(state => state.session.user);
     const reviews = useSelector(state => Object.values(state.reviews));
 
@@ -37,6 +39,9 @@ export default function HauntPage () {
     useEffect(() => {
         dispatch(getHaunts());
         dispatch(getReviews(id));
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000)
     }, [dispatch, id]);
 
     if (!haunt) {
@@ -97,40 +102,55 @@ export default function HauntPage () {
         setImage(defaultImg);
     }
 
+    let mainContent = null;
+    if (loading) {
+        mainContent = (
+            <div className="loading-div">
+                <img className="loading-img" src={batGif}/>
+            </div>
+        )
+    } else {
+        mainContent = (
+            <>
+                <div className='haunt-title'>
+                    <h1>{haunt.name}</h1>
+                </div>
+                <div className='haunt-img-div'>
+                    <img src={image} alt='haunt' onError={onError} className='haunt-img'/>
+                </div>
+                <div className='haunt-details-div'>
+                    <div className='haunt-details-detail'>
+                        <p>{haunt.address}, {haunt.city}, {haunt.state}, {haunt.country}</p>
+                    </div>
+                    <div className='haunt-details-detail'>
+                        <p>${haunt.price} / Night</p>
+                    </div>
+                    <div className='haunt-details-detail'>
+                        <p>Paranormal Activity rating: {paranormalRating}</p>
+                    </div>
+                    <div className='haunt-details-detail'>
+                        <p>Comfort Rating: {comfortRating}</p>
+                    </div>
+                    <div className='haunt-details-detail'>
+                        <p>{haunt.description}</p>
+                    </div>
+                    {isUser && (
+                        <div>
+                            <button className='haunt-details-btn' onClick={() => showForm === true ? setShowForm(false) : setShowForm(true)}>Edit</button>
+                            <button className='haunt-details-btn' onClick={deleteHaunt}>Delete Haunt</button>
+                        </div>
+                    )}
+                    {content}
+                    <Bookings hauntId={id}/>
+                </div>
+                <Reviews haunt={haunt} hauntReviews={hauntReviews}/>
+            </>
+        )
+    }
+
     return (
         <div className='main-haunt-div'>
-            <div className='haunt-title'>
-                <h1>{haunt.name}</h1>
-            </div>
-            <div className='haunt-img-div'>
-                <img src={image} alt='haunt' onError={onError} className='haunt-img'/>
-            </div>
-            <div className='haunt-details-div'>
-                <div className='haunt-details-detail'>
-                    <p>{haunt.address}, {haunt.city}, {haunt.state}, {haunt.country}</p>
-                </div>
-                <div className='haunt-details-detail'>
-                    <p>${haunt.price} / Night</p>
-                </div>
-                <div className='haunt-details-detail'>
-                    <p>Paranormal Activity rating: {paranormalRating}</p>
-                </div>
-                <div className='haunt-details-detail'>
-                    <p>Comfort Rating: {comfortRating}</p>
-                </div>
-                <div className='haunt-details-detail'>
-                    <p>{haunt.description}</p>
-                </div>
-                {isUser && (
-                    <div>
-                        <button className='haunt-details-btn' onClick={() => showForm === true ? setShowForm(false) : setShowForm(true)}>Edit</button>
-                        <button className='haunt-details-btn' onClick={deleteHaunt}>Delete Haunt</button>
-                    </div>
-                )}
-                {content}
-                <Bookings hauntId={id}/>
-            </div>
-            <Reviews haunt={haunt} hauntReviews={hauntReviews}/>
+            {mainContent}
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
 import HomePage from './components/HomePage';
@@ -39,7 +39,7 @@ function App() {
                 <HauntPage />
             </Route>
             <Route>
-                Page Not Found
+                <Redirect to="/haunts" />
             </Route>
         </Switch>
     </>
