@@ -46,6 +46,7 @@ export default function HauntTile ({ haunt }) {
                     onError={onError}
                     className='hauntTile-img'
                     alt='haunt'
+                    loading='lazy'
                 />
                 <h3 className='hauntTile-name'>{haunt.name}</h3>
                 <h4 className='hauntTile-address'>{haunt.city}, {haunt.state}</h4>

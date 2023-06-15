@@ -3,14 +3,13 @@
     flex-direction: column;
     height: 40%;
     width: 49%;
-    border-radius: 10px;
     overflow: hidden;
 }
 
 .haunt-img {
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
+    min-height: 400px;
+    max-height: 600px;
 }
 
 .main-haunt-div {
